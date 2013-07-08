@@ -10,4 +10,17 @@
 
 @implementation ShipmentTrackByReferenceResult
 
+-(id)initWithJSON:(NSDictionary*)json{
+    self = [super init];
+    
+    if([json objectForKey:@"history"]){
+        _trackingHistoryList = [TrackingDetailsHistory getFromJSONArray:[json objectForKey:@"history"]];
+    }
+    else{
+        [self wrapJSONErrorData:json];
+    }
+    
+    return self;
+}
+
 @end

@@ -25,7 +25,7 @@ NSString *const ADDRESS_KEY_ZIP_CODE = @"zip_code";
 
 @implementation Address
 
--(void)validate{
+-(AddressValidationResult*)validate{
     
     PostMasterRequest *request = [PostMasterRequest validateAddressRequest:self];
 
@@ -33,15 +33,16 @@ NSString *const ADDRESS_KEY_ZIP_CODE = @"zip_code";
     NSError *receivedError;
     NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&receivedResponse error:&receivedError];
     
-    NSArray* result;
-    if(!receivedError){
+    AddressValidationResult* result;
+    if(receivedError){
+        result = [[AddressValidationResult alloc] initWithCommonHTTPError:receivedError];
+    }
+    else{
         NSMutableDictionary* jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&receivedError];
-        NSLog(@"JSON:%@",jsonResponse);
-        result = [Address getFromJSONArray:[jsonResponse objectForKey:DICT_KEY_ADDRESSES]];
+        result = [[AddressValidationResult alloc] initWithJSON:jsonResponse];
     }
     
-    
-    NSLog(@"Addresses:%@",result);
+    return result;
 }
 
 -(NSDictionary*)toJSONReadyDictionary{

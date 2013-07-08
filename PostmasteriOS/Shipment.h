@@ -16,6 +16,16 @@
 #import "Service.h"
 #import "Rate.h"
 
+#import "ShipmentCreationResult.h"
+#import "ShipmentFetchResult.h"
+#import "ShipmentTrackResult.h"
+#import "ShipmentTrackByReferenceResult.h"
+#import "DeliveryTimeQueryMessage.h"
+#import "DeliveryTimeResult.h"
+#import "RateQueryMessage.h"
+#import "RateResult.h"
+#import "ShipmentVoidResult.h"
+
 @interface Shipment : PostmasterEntity
 
 extern NSString *const DICT_KEY_TRACKING_RESULTS;
@@ -52,15 +62,15 @@ extern NSString *const SHIPMENT_KEY_SERVICE;
 @property(nonatomic,retain) NSString* reference;
 extern NSString *const SHIPMENT_KEY_REFERENCE;
 
--(void)createShipment;
-+(NSArray*)fetchShipmentsWithCursor:(NSString*)cursor andLimit:(NSInteger)limit;
-+(void)track:(NSInteger) shipmentId;
--(void)track;
-+(void)trackByReferenceNumber:(NSString*)referenceNumber;
-+(void)voidShipment:(NSInteger)shipmentId;
--(void)voidShipment;
-+(void)deliveryTime:(DeliveryTimeQueryMessage*)message;
-+(void)rates:(RateQueryMessage*)rateMessage;
+-(ShipmentCreationResult*)createShipment;
++(ShipmentFetchResult*)fetchShipmentsWithCursor:(NSString*)cursor andLimit:(NSInteger)limit;
++(ShipmentTrackResult*)track:(NSInteger) shipmentId;
+-(ShipmentTrackResult*)track;
++(ShipmentTrackByReferenceResult*)trackByReferenceNumber:(NSString*)referenceNumber;
++(ShipmentVoidResult*)voidShipment:(NSInteger)shipmentId;
+-(ShipmentVoidResult*)voidShipment;
++(DeliveryTimeResult*)deliveryTime:(DeliveryTimeQueryMessage*)message;
++(RateResult*)rates:(RateQueryMessage*)rateMessage;
 
 
 @end

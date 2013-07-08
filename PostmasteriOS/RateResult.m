@@ -10,4 +10,13 @@
 
 @implementation RateResult
 
+-(id)initWithJSON:(NSDictionary*)json{
+    self=[super init];
+    [self wrapJSONErrorData:json];
+    if(!_jsonErrorCode){
+        _rate = [[Rate alloc] initWithJSON:json];
+    }
+    return self;
+}
+
 @end

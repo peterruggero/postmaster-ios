@@ -7,7 +7,10 @@
 //
 
 #import "OperationResult.h"
+#import "TrackingDetailsHistory.h"
 
 @interface ShipmentTrackByReferenceResult : OperationResult
+
+@property(nonatomic,retain) NSArray* trackingHistoryList;
 
 @end

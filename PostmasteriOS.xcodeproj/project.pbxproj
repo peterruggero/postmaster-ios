@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DA0705371773353F00F341ED /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0705361773353F00F341ED /* NSData+Base64.m */; };
 		DA07053A17733E1400F341ED /* PostmasterEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DA07053917733E1400F341ED /* PostmasterEntity.m */; };
 		DA07053D177350AB00F341ED /* Package.m in Sources */ = {isa = PBXBuildFile; fileRef = DA07053C177350AB00F341ED /* Package.m */; };
 		DA0705401774668400F341ED /* Rate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA07053F1774668400F341ED /* Rate.m */; };
@@ -37,7 +36,10 @@
 		DA7FFF5D176F327F00BFDC9C /* PostMasterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7FFF5C176F327F00BFDC9C /* PostMasterRequest.m */; };
 		DA7FFF61176F357F00BFDC9C /* NSDictionary+Postmaster.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7FFF60176F357F00BFDC9C /* NSDictionary+Postmaster.m */; };
 		DA7FFF64176F3C4C00BFDC9C /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7FFF63176F3C4C00BFDC9C /* Settings.m */; };
-		DA7FFF68176F585800BFDC9C /* TestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7FFF67176F585800BFDC9C /* TestDelegate.m */; };
+		DA9C8AF4178AE0C6008E2973 /* AddressValidationResult.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9C8AF3178AE0C6008E2973 /* AddressValidationResult.m */; };
+		DA9C8AF7178AF309008E2973 /* ShipmentVoidResult.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9C8AF6178AF308008E2973 /* ShipmentVoidResult.m */; };
+		DA9C8AFD178AFF63008E2973 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9C8AFC178AFF63008E2973 /* NSData+Base64.m */; };
+		DA9C8AFE178AFF63008E2973 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9C8AFC178AFF63008E2973 /* NSData+Base64.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,8 +66,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		DA0705351773353F00F341ED /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Base64.h"; path = "../../../RecipeGrazer/RecipeGrazer/RecipeGrazer/NSData+Base64.h"; sourceTree = "<group>"; };
-		DA0705361773353F00F341ED /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Base64.m"; path = "../../../RecipeGrazer/RecipeGrazer/RecipeGrazer/NSData+Base64.m"; sourceTree = "<group>"; };
 		DA07053817733E1400F341ED /* PostmasterEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostmasterEntity.h; sourceTree = "<group>"; };
 		DA07053917733E1400F341ED /* PostmasterEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostmasterEntity.m; sourceTree = "<group>"; };
 		DA07053B177350AB00F341ED /* Package.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Package.h; sourceTree = "<group>"; };
@@ -118,8 +118,12 @@
 		DA7FFF60176F357F00BFDC9C /* NSDictionary+Postmaster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Postmaster.m"; sourceTree = "<group>"; };
 		DA7FFF62176F3C4C00BFDC9C /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		DA7FFF63176F3C4C00BFDC9C /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
-		DA7FFF66176F585800BFDC9C /* TestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestDelegate.h; path = ../../../RecipeGrazer/RecipeGrazer/RecipeGrazerTests/TestDelegate.h; sourceTree = "<group>"; };
-		DA7FFF67176F585800BFDC9C /* TestDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestDelegate.m; path = ../../../RecipeGrazer/RecipeGrazer/RecipeGrazerTests/TestDelegate.m; sourceTree = "<group>"; };
+		DA9C8AF2178AE0C6008E2973 /* AddressValidationResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressValidationResult.h; sourceTree = "<group>"; };
+		DA9C8AF3178AE0C6008E2973 /* AddressValidationResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressValidationResult.m; sourceTree = "<group>"; };
+		DA9C8AF5178AF308008E2973 /* ShipmentVoidResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipmentVoidResult.h; sourceTree = "<group>"; };
+		DA9C8AF6178AF308008E2973 /* ShipmentVoidResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShipmentVoidResult.m; sourceTree = "<group>"; };
+		DA9C8AFB178AFF63008E2973 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		DA9C8AFC178AFF63008E2973 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +166,10 @@
 				DA07064B17788A3F00F341ED /* ShipmentTrackByReferenceResult.m */,
 				DA07064D17788A4E00F341ED /* ShipmentTrackResult.h */,
 				DA07064E17788A4F00F341ED /* ShipmentTrackResult.m */,
+				DA9C8AF2178AE0C6008E2973 /* AddressValidationResult.h */,
+				DA9C8AF3178AE0C6008E2973 /* AddressValidationResult.m */,
+				DA9C8AF5178AF308008E2973 /* ShipmentVoidResult.h */,
+				DA9C8AF6178AF308008E2973 /* ShipmentVoidResult.m */,
 			);
 			name = Results;
 			sourceTree = "<group>";
@@ -222,7 +230,6 @@
 		DA7FFF45176F1F1800BFDC9C /* PostmasteriOSTests */ = {
 			isa = PBXGroup;
 			children = (
-				DA7FFF65176F584B00BFDC9C /* Dependencies */,
 				DA7FFF4B176F1F1800BFDC9C /* PostmasteriOSTests.h */,
 				DA7FFF4C176F1F1800BFDC9C /* PostmasteriOSTests.m */,
 				DA7FFF46176F1F1800BFDC9C /* Supporting Files */,
@@ -269,8 +276,8 @@
 		DA7FFF5A176F326000BFDC9C /* Connections */ = {
 			isa = PBXGroup;
 			children = (
-				DA0705351773353F00F341ED /* NSData+Base64.h */,
-				DA0705361773353F00F341ED /* NSData+Base64.m */,
+				DA9C8AFB178AFF63008E2973 /* NSData+Base64.h */,
+				DA9C8AFC178AFF63008E2973 /* NSData+Base64.m */,
 				DA7FFF5B176F327F00BFDC9C /* PostMasterRequest.h */,
 				DA7FFF5C176F327F00BFDC9C /* PostMasterRequest.m */,
 			);
@@ -284,15 +291,6 @@
 				DA7FFF60176F357F00BFDC9C /* NSDictionary+Postmaster.m */,
 			);
 			name = Categories;
-			sourceTree = "<group>";
-		};
-		DA7FFF65176F584B00BFDC9C /* Dependencies */ = {
-			isa = PBXGroup;
-			children = (
-				DA7FFF66176F585800BFDC9C /* TestDelegate.h */,
-				DA7FFF67176F585800BFDC9C /* TestDelegate.m */,
-			);
-			name = Dependencies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -414,6 +412,9 @@
 				DA07064917788A3000F341ED /* ShipmentFetchResult.m in Sources */,
 				DA07064C17788A4200F341ED /* ShipmentTrackByReferenceResult.m in Sources */,
 				DA07064F17788A4F00F341ED /* ShipmentTrackResult.m in Sources */,
+				DA9C8AF4178AE0C6008E2973 /* AddressValidationResult.m in Sources */,
+				DA9C8AF7178AF309008E2973 /* ShipmentVoidResult.m in Sources */,
+				DA9C8AFD178AFF63008E2973 /* NSData+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,8 +423,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA7FFF4D176F1F1800BFDC9C /* PostmasteriOSTests.m in Sources */,
-				DA7FFF68176F585800BFDC9C /* TestDelegate.m in Sources */,
-				DA0705371773353F00F341ED /* NSData+Base64.m in Sources */,
+				DA9C8AFE178AFF63008E2973 /* NSData+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

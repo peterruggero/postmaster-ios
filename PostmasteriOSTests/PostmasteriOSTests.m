@@ -8,7 +8,6 @@
 
 #import "PostmasteriOSTests.h"
 #import "Address.h"
-#import "TestDelegate.h"
 #import "Shipment.h"
 #import "Package.h"
 #import "Service.h"
@@ -16,27 +15,6 @@
 #import "RateQueryMessage.h"
 
 @implementation PostmasteriOSTests
-
--(void)hangUntilAsyncFinished:(TestDelegate*) delegate:(int) secondsTimeout{
-    NSDate *loopUntil = [NSDate dateWithTimeIntervalSinceNow:secondsTimeout];
-    
-    if(delegate!=nil){
-        while ([delegate done] == NO && [loopUntil timeIntervalSinceNow] > 0) {
-            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
-                                     beforeDate:loopUntil];
-        }
-        if(![delegate done]){
-            STFail(@"Timeout reached!");
-        }
-    }
-    else{
-        while ([loopUntil timeIntervalSinceNow] > 0) {
-            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
-                                     beforeDate:loopUntil];
-        }
-    }
-    
-}
 
 - (void)setUp
 {
@@ -57,9 +35,10 @@
 -(void)testInit{
         
 }
+
+
 -(void)test_01_ValidateAddress{
-    __block TestDelegate* sender = [[TestDelegate alloc] init];
-    
+
     Address *address = [[Address alloc] init];
     address.city = @"Austin";
     address.country = @"US";
@@ -69,14 +48,25 @@
     address.state = @"TX";
     address.zipCode = @"78704";
     
-    [address validate];
-    [self hangUntilAsyncFinished:nil :20];
+    BOOL testResult = NO;
+    
+    AddressValidationResult* result = [address validate];
+    if(result && ([[result standarizedAddresses] count] > 0)){
+        Address* receivedAddress = [[result standarizedAddresses] objectAtIndex:0];
+        if([address.city isEqualToString:receivedAddress.city]){
+            testResult = YES;
+        }
+    }
+    
+    if(!testResult){
+        STFail(@"No appropriate address was returned");
+    }
+    NSLog(@"%@",result);
 }
 
-/*
--(void)test_02_CreateShipment{
 
-    __block TestDelegate* sender = [[TestDelegate alloc] init];
+
+-(void)test_02_CreateShipment{
     
     Shipment* sh =[[Shipment alloc] init];
     Address* toAddress = [[Address alloc]init];
@@ -103,66 +93,96 @@
     sh.packageInfo = pkg;
     sh.reference = @"Order # 54321";
 
-    [sh createShipment];
+   
+    ShipmentCreationResult* result = [sh createShipment];
     
-    [self hangUntilAsyncFinished:nil :20];
-
+    if(!result.commonHTTPError && ![result jsonErrorMessage] && ([result shipment])){
+        STFail(@"Shipment creation failed");
+    }
+    NSLog(@"%@",result);
 
 }
- */
 
-/*
+
+-(void)test_031_getShipments{
+    
+    ShipmentFetchResult* result = [Shipment fetchShipmentsWithCursor:nil andLimit:5];
+    BOOL testResult = NO;
+    
+    if(result && ([[result shipments] count]>0)){
+        testResult = YES;
+    }
+    
+    if(!testResult){
+        STFail(@"Nothing was returned");
+    }
+    
+    NSLog(@"%@",result);
+}
+
+
 -(void)test_03_trackShipment{
-    __block TestDelegate* sender = [[TestDelegate alloc] init];
-
-    [Shipment track:1002];
     
-    [self hangUntilAsyncFinished:nil :20];
+    ShipmentTrackResult* result = [Shipment track:1002];
+    
+    if(![result trackingDetails]){
+        STFail(@"Nothing was returned");
+    }
+    NSLog(@"%@",result);
+    
 }
- */
 
-/*
 
--(void)test_04_trackShipment{
-    __block TestDelegate* sender = [[TestDelegate alloc] init];
+-(void)test_04_trackShipmentByRefNo{
     
-    [Shipment trackByReferenceNumber:@"1Z8V81310297718490"];
+    ShipmentTrackByReferenceResult* result = [Shipment trackByReferenceNumber:@"1Z8V81310297718490"];
+
+    if(([[result trackingHistoryList] count]) == 0 && ![result jsonErrorMessage]){
+        STFail(@"Nothing was returned");
+    }
     
-    [self hangUntilAsyncFinished:nil :20];
+    NSLog(@"%@",result);
+    
 }
-*/
+
  
-/*
 -(void)test_05_voidShipment{
-    __block TestDelegate* sender = [[TestDelegate alloc] init];
     
-    [Shipment voidShipment:1004];
+    ShipmentVoidResult* result = [Shipment voidShipment:1004];
+    if([result voidSuccess]){
+        NSLog(@"VOID SUCCESSFUL");
+    }
+    else{
+        NSLog(@"VOID FAILED");
+    }
     
-    [self hangUntilAsyncFinished:nil :20];
+    if(![result voidSuccess] && ![result jsonErrorMessage]){
+        STFail(@"Nothing was returned");
+    }
+    
+    NSLog(@"%@",result);
+    
 }
-*/
-/*
+
+ 
 -(void)test_06_deliveryTimesTest{
-    __block TestDelegate* sender = [[TestDelegate alloc] init];
-    
-    
-    
-    //[Shipment :1004];
+       
     DeliveryTimeQueryMessage* service = [[DeliveryTimeQueryMessage alloc] init];
     service.carrier = @"ups";
     service.fromZip = @"28771";
     service.toZip = @"78704";
     service.weight = [NSNumber numberWithFloat:1.0f];
-    [Shipment deliveryTime:service];
+    DeliveryTimeResult* result = [Shipment deliveryTime:service];
     
-    [self hangUntilAsyncFinished:nil :20];
+    if([[result services] count] == 0){
+        STFail(@"No services returned");
+    }
+    
+    NSLog(@"Result:%@",result);
 }
-*/
 
-/*
 
 -(void)test_07_ratesTest{
-    __block TestDelegate* sender = [[TestDelegate alloc] init];
     
     RateQueryMessage* message = [[RateQueryMessage alloc] init];
     message.carrier = @"fedex";
@@ -170,19 +190,14 @@
     message.toZip = @"78704";
     message.weight = [NSNumber numberWithFloat:1.0f];
     
-    [Shipment rates:message];
+    RateResult* result = [Shipment rates:message];
     
-    [self hangUntilAsyncFinished:nil :20];
+    if(![result rate]){
+        STFail(@"No rate returned");
+    }
+    
+    NSLog(@"%@",result);
 }
- */
+ 
 
-/*
--(void)test_08_fetchShipment{
-    
-    [Shipment fetchShipmentsWithCursor:nil andLimit:0];
-    
-    [self hangUntilAsyncFinished:nil :20];
-}
-
- */
 @end

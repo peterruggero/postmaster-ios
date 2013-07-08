@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "PostmasterEntity.h"
+#import "AddressValidationResult.h"
+
 
 
 @interface Address : PostmasterEntity
@@ -38,6 +40,6 @@ extern NSString *const ADDRESS_KEY_STATE;
 @property(nonatomic,retain) NSString* zipCode;
 extern NSString *const ADDRESS_KEY_ZIP_CODE;
 
--(void)validate;
+-(AddressValidationResult*)validate;
 
 @end

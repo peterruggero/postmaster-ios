@@ -7,7 +7,18 @@
 //
 
 #import "ShipmentCreationResult.h"
+#import "Shipment.h"
 
 @implementation ShipmentCreationResult
+
+-(id)initWithJSON:(NSDictionary*)json{
+    self = [super init];
+    if([json objectForKey:@"id"]){
+        _shipment = [[Shipment alloc] initWithJSON:json];
+    }else{
+        [self wrapJSONErrorData:json];
+    }
+    return self;
+}
 
 @end

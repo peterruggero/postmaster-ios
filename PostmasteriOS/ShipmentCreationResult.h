@@ -8,6 +8,10 @@
 
 #import "OperationResult.h"
 
+@class Shipment;
+
 @interface ShipmentCreationResult : OperationResult
+
+@property(nonatomic,retain) Shipment* shipment;
 
 @end

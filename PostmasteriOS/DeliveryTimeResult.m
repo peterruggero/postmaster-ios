@@ -10,4 +10,16 @@
 
 @implementation DeliveryTimeResult
 
+-(id)initWithJSON:(NSDictionary*)json{
+    self=[super init];
+    
+    if([json objectForKey:@"services"]){
+        self.services = [Service getFromJSONArray:[json objectForKey:@"services"]];
+    }
+    else{
+        [self wrapJSONErrorData:json];
+    }
+    return self;
+}
+
 @end

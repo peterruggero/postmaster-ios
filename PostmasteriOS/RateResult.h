@@ -8,7 +8,10 @@
 
 #import "PostmasterEntity.h"
 #import "OperationResult.h"
+#import "Rate.h"
 
 @interface RateResult : OperationResult
+
+@property(nonatomic,retain) Rate* rate;
 
 @end

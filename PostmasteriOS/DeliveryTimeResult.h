@@ -8,7 +8,10 @@
 
 #import "PostmasterEntity.h"
 #import "OperationResult.h"
+#import "Service.h"
 
 @interface DeliveryTimeResult : OperationResult
+
+@property(nonatomic,retain) NSArray* services;
 
 @end

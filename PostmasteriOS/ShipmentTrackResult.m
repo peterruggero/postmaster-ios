@@ -10,4 +10,18 @@
 
 @implementation ShipmentTrackResult
 
+
+-(id)initWithJSON:(NSDictionary *)json{
+    self = [super init];
+    
+    if([json objectForKey:@"results"]){
+        _trackingDetails = [TrackingDetails getFromJSONArray:[json objectForKey:@"results"]];
+    }
+    else{
+        [self wrapJSONErrorData:json];
+    }
+    
+    return self;
+}
+
 @end

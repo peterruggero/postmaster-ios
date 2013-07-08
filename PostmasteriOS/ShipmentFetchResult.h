@@ -8,6 +8,11 @@
 
 #import "OperationResult.h"
 
+@class Shipment;
 @interface ShipmentFetchResult : OperationResult
+
+@property(nonatomic,retain) NSArray* shipments;
+@property(nonatomic,retain) NSString* cursor;
+@property(nonatomic,retain) NSString* previousCursor;
 
 @end

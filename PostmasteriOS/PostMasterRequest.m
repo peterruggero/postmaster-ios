@@ -17,19 +17,13 @@
 
 +(PostMasterRequest*)validateAddressRequest:(Address*)address{
     PostMasterRequest* request = [self requestWithHTTPMethod:CONN_TYPE_POST version:API_VERSION_1 path:@"/validate" parameters:nil];
-    
     [request addContentLengthWithDictionary:[address toJSONReadyDictionary] ];
-    //NSLog(@"REQUEST BODY: %@",[[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding]);
     return request;
 }
 
 +(PostMasterRequest*)createShipmentRequest:(Shipment*)shipment{
     PostMasterRequest* request = [self requestWithHTTPMethod:CONN_TYPE_POST version:API_VERSION_1 path:@"/shipments" parameters:nil];
-    
-    NSLog(@"SHIPMENT DICT: %@",[shipment toJSONReadyDictionary]);
-    
     [request addContentLengthWithDictionary:[shipment toJSONReadyDictionary] ];
-    //NSLog(@"REQUEST BODY: %@",[[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding]);
     return request;
 }
 
@@ -67,16 +61,11 @@
 
 - (void)addContentLengthWithDictionary:(NSDictionary*)dictionary;
 {
-    //Generate the jsonData with the dictionary.
     NSError *jsonError;
     NSData *requestData = [NSJSONSerialization dataWithJSONObject:dictionary
                                                           options:0
                                                             error:&jsonError];
     
-    NSString* json = [[NSString alloc] initWithData:requestData encoding:NSUTF8StringEncoding];
-    //json = [json stringByReplacingOccurrencesOfString:@"\"" withString:@"/\""];
-    //requestData = [json dataUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"PREPARED JSON:%@",json);
     if(jsonError)
         return;
     
@@ -112,7 +101,6 @@
     }
     
     [request setValue:[NSString stringWithFormat:@"Basic %@=",[self getAuthEncodedString] ]forHTTPHeaderField:@"Authorization"];
-    
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
