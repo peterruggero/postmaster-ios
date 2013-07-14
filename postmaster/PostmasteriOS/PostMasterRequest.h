@@ -29,6 +29,7 @@
 +(PostMasterRequest*)validateAddressRequest:(Address*)address;
 +(PostMasterRequest*)createShipmentRequest:(Shipment*)shipment;
 +(PostMasterRequest*)fetchShipmentRequestWithCursor:(NSString*)cursor andLimit:(NSInteger)limit;
++(PostMasterRequest*)fetchShipmentById:(NSInteger)shipmentId;
 +(PostMasterRequest*)trackShipmentRequest:(NSInteger)shipmentId;
 +(PostMasterRequest*)trackByReferenceNumber:(NSString*)referenceNumber;
 +(PostMasterRequest*)voidShipmentRequest:(NSInteger)shipmentId;

@@ -81,71 +81,43 @@ NSString *const SHIPMENT_KEY_REFERENCE = @"reference";
     return nil;
 }
 
--(ShipmentCreationResult*)createShipment{
-    
-    PostMasterRequest *request = [PostMasterRequest createShipmentRequest:self];
++(id)executeRequest:(PostMasterRequest*)request andFillResult:(OperationResult*)result{
     
     NSHTTPURLResponse *receivedResponse;
     NSError *receivedError;
     
     NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&receivedResponse error:&receivedError];
     
-    ShipmentCreationResult* result;
-    
     if(receivedError){
-        result = [[ShipmentCreationResult alloc] initWithCommonHTTPError:receivedError];
+        result = [result initWithCommonHTTPError:receivedError];
     }
     else{
         NSMutableDictionary* jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&receivedError];
-        result = [[ShipmentCreationResult alloc] initWithJSON:jsonResponse];
+        result = [result initWithJSON:jsonResponse];
     }
-
+    
     return result;
-
 }
 
+-(ShipmentCreationResult*)createShipment{
+    PostMasterRequest *request = [PostMasterRequest createShipmentRequest:self];
+    return [Shipment executeRequest:request andFillResult:[ShipmentCreationResult alloc]];
+}
 
 +(ShipmentFetchResult*)fetchShipmentsWithCursor:(NSString*)cursor andLimit:(NSInteger)limit{
     PostMasterRequest *request = [PostMasterRequest fetchShipmentRequestWithCursor:cursor andLimit:limit];
-    
-    NSHTTPURLResponse *receivedResponse;
-    NSError *receivedError;
-    
-    NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&receivedResponse error:&receivedError];
-    
-    ShipmentFetchResult* result;
-    
-    if(receivedError){
-        result = [[ShipmentFetchResult alloc] initWithCommonHTTPError:receivedError];
-    }
-    else{
-        NSMutableDictionary* jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&receivedError];
-        result = [[ShipmentFetchResult alloc] initWithJSON:jsonResponse];
-    }
-    
-    return result;
+    return [self executeRequest:request andFillResult:[ShipmentFetchResult alloc]];    
 }
 
 
++(ShipmentFetchByIdResult*)fetchShipmentById:(NSInteger)shipmentId{
+    PostMasterRequest *request = [PostMasterRequest fetchShipmentById:shipmentId];
+    return [self executeRequest:request andFillResult:[ShipmentFetchByIdResult alloc]];
+}
+
 +(ShipmentTrackResult*)track:(NSInteger) shipmentId{
     PostMasterRequest *request = [PostMasterRequest trackShipmentRequest:shipmentId];
-    
-    NSHTTPURLResponse *receivedResponse;
-    NSError *receivedError;
-    
-    NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&receivedResponse error:&receivedError];
-    
-    ShipmentTrackResult* result;
-    
-    if(receivedError){
-        result = [[ShipmentTrackResult alloc] initWithCommonHTTPError:receivedError];
-    }
-    else{
-        NSMutableDictionary* jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&receivedError];
-        result = [[ShipmentTrackResult alloc] initWithJSON:jsonResponse];
-    }
-    
-    return result;
+    return [self executeRequest:request andFillResult:[ShipmentTrackResult alloc]];  
 }
 
 -(ShipmentTrackResult*)track{
@@ -154,42 +126,12 @@ NSString *const SHIPMENT_KEY_REFERENCE = @"reference";
 
 +(ShipmentTrackByReferenceResult*)trackByReferenceNumber:(NSString*)referenceNumber{
     PostMasterRequest *request = [PostMasterRequest trackByReferenceNumber:referenceNumber];
-    NSHTTPURLResponse *receivedResponse;
-    NSError *receivedError;
-    
-    NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&receivedResponse error:&receivedError];
-    ShipmentTrackByReferenceResult* result;
-    
-    if(receivedError){
-        result =[[ShipmentTrackByReferenceResult alloc] initWithCommonHTTPError:receivedError];
-    }
-    else{
-        NSMutableDictionary* jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&receivedError];
-        result =[[ShipmentTrackByReferenceResult alloc] initWithJSON:jsonResponse];
-    }
-   
-    return result;
+    return [self executeRequest:request andFillResult:[ShipmentTrackByReferenceResult alloc]];
 }
 
 +(ShipmentVoidResult*)voidShipment:(NSInteger)shipmentId{
     PostMasterRequest *request = [PostMasterRequest voidShipmentRequest:shipmentId];
-    NSHTTPURLResponse *receivedResponse;
-    NSError *receivedError;
-    
-    NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&receivedResponse error:&receivedError];
-    
-    ShipmentVoidResult* result;
-    
-    if(receivedError){
-        result = [[ShipmentVoidResult alloc] initWithCommonHTTPError:receivedError];
-    }
-    else{
-        NSMutableDictionary* jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&receivedError];
-        
-        result = [[ShipmentVoidResult alloc] initWithJSON:jsonResponse];
-    }
-
-    return result;
+    return [self executeRequest:request andFillResult:[ShipmentVoidResult alloc]];
 }
 
 -(ShipmentVoidResult*)voidShipment{
@@ -198,43 +140,12 @@ NSString *const SHIPMENT_KEY_REFERENCE = @"reference";
 
 +(DeliveryTimeResult*)deliveryTime:(DeliveryTimeQueryMessage*)message{
     PostMasterRequest *request = [PostMasterRequest deliveryTimeRequest:message];
-    NSHTTPURLResponse *receivedResponse;
-    NSError *receivedError;
-    
-    NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&receivedResponse error:&receivedError];
-    
-    DeliveryTimeResult* result;
-    
-    if(receivedError){
-        result = [[DeliveryTimeResult alloc] initWithCommonHTTPError:receivedError];
-    }
-    else{
-        NSMutableDictionary* jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&receivedError];
-        result = [[DeliveryTimeResult alloc] initWithJSON:jsonResponse];
-    }
-    
-    return result;
+    return [self executeRequest:request andFillResult:[DeliveryTimeResult alloc]];
 }
 
 +(RateResult*)rates:(RateQueryMessage*)rateMessage{
     PostMasterRequest *request = [PostMasterRequest rates:rateMessage];
-    NSHTTPURLResponse *receivedResponse;
-    NSError *receivedError;
-    
-    NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&receivedResponse error:&receivedError];
-   
-    RateResult* result;
-    
-    if(receivedError){
-        result = [[RateResult alloc] initWithCommonHTTPError:receivedError];
-    }
-    else{
-        NSMutableDictionary* jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&receivedError];
-        
-        result = [[RateResult alloc] initWithJSON:jsonResponse];
-    }
-    
-    return result;
+    return [self executeRequest:request andFillResult:[RateResult alloc]];
 }
 
 @end

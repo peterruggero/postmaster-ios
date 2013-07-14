@@ -17,6 +17,13 @@
     return _jsonErrorCode;
 }
 
+-(BOOL)hasError{
+    if(!_jsonErrorCode && !_jsonErrorMessage && !self.commonHTTPError){
+        return NO;
+    }
+    return YES;
+}
+
 -(void)wrapJSONErrorData:(NSDictionary*)json{
     _jsonErrorMessage = [json objectForKey:@"message"];
     _jsonErrorCode = [[json valueForKey:@"code"] integerValue];

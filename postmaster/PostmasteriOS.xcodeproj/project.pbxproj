@@ -23,6 +23,8 @@
 		DA07064917788A3000F341ED /* ShipmentFetchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = DA07064817788A2F00F341ED /* ShipmentFetchResult.m */; };
 		DA07064C17788A4200F341ED /* ShipmentTrackByReferenceResult.m in Sources */ = {isa = PBXBuildFile; fileRef = DA07064B17788A3F00F341ED /* ShipmentTrackByReferenceResult.m */; };
 		DA07064F17788A4F00F341ED /* ShipmentTrackResult.m in Sources */ = {isa = PBXBuildFile; fileRef = DA07064E17788A4F00F341ED /* ShipmentTrackResult.m */; };
+		DA38EB4E178DB846005D4F0A /* Base64Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA38EB4D178DB846005D4F0A /* Base64Helper.m */; };
+		DA38EB4F178DB846005D4F0A /* Base64Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA38EB4D178DB846005D4F0A /* Base64Helper.m */; };
 		DA7FFF2F176F1F1800BFDC9C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7FFF2E176F1F1800BFDC9C /* Foundation.framework */; };
 		DA7FFF34176F1F1800BFDC9C /* Postmaster.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DA7FFF33176F1F1800BFDC9C /* Postmaster.h */; };
 		DA7FFF36176F1F1800BFDC9C /* Postmaster.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7FFF35176F1F1800BFDC9C /* Postmaster.m */; };
@@ -38,8 +40,7 @@
 		DA7FFF64176F3C4C00BFDC9C /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7FFF63176F3C4C00BFDC9C /* Settings.m */; };
 		DA9C8AF4178AE0C6008E2973 /* AddressValidationResult.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9C8AF3178AE0C6008E2973 /* AddressValidationResult.m */; };
 		DA9C8AF7178AF309008E2973 /* ShipmentVoidResult.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9C8AF6178AF308008E2973 /* ShipmentVoidResult.m */; };
-		DA9C8AFD178AFF63008E2973 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9C8AFC178AFF63008E2973 /* NSData+Base64.m */; };
-		DA9C8AFE178AFF63008E2973 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9C8AFC178AFF63008E2973 /* NSData+Base64.m */; };
+		DAA820F71792F03A005EF8C4 /* ShipmentFetchByIdResult.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA820F61792F03A005EF8C4 /* ShipmentFetchByIdResult.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,8 @@
 		DA07064B17788A3F00F341ED /* ShipmentTrackByReferenceResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShipmentTrackByReferenceResult.m; sourceTree = "<group>"; };
 		DA07064D17788A4E00F341ED /* ShipmentTrackResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipmentTrackResult.h; sourceTree = "<group>"; };
 		DA07064E17788A4F00F341ED /* ShipmentTrackResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShipmentTrackResult.m; sourceTree = "<group>"; };
+		DA38EB4C178DB846005D4F0A /* Base64Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Helper.h; sourceTree = "<group>"; };
+		DA38EB4D178DB846005D4F0A /* Base64Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64Helper.m; sourceTree = "<group>"; };
 		DA7FFF2B176F1F1800BFDC9C /* libPostmasteriOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPostmasteriOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA7FFF2E176F1F1800BFDC9C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DA7FFF32176F1F1800BFDC9C /* PostmasteriOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PostmasteriOS-Prefix.pch"; sourceTree = "<group>"; };
@@ -122,8 +125,8 @@
 		DA9C8AF3178AE0C6008E2973 /* AddressValidationResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressValidationResult.m; sourceTree = "<group>"; };
 		DA9C8AF5178AF308008E2973 /* ShipmentVoidResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipmentVoidResult.h; sourceTree = "<group>"; };
 		DA9C8AF6178AF308008E2973 /* ShipmentVoidResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShipmentVoidResult.m; sourceTree = "<group>"; };
-		DA9C8AFB178AFF63008E2973 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
-		DA9C8AFC178AFF63008E2973 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		DAA820F51792F03A005EF8C4 /* ShipmentFetchByIdResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipmentFetchByIdResult.h; sourceTree = "<group>"; };
+		DAA820F61792F03A005EF8C4 /* ShipmentFetchByIdResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShipmentFetchByIdResult.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +173,8 @@
 				DA9C8AF3178AE0C6008E2973 /* AddressValidationResult.m */,
 				DA9C8AF5178AF308008E2973 /* ShipmentVoidResult.h */,
 				DA9C8AF6178AF308008E2973 /* ShipmentVoidResult.m */,
+				DAA820F51792F03A005EF8C4 /* ShipmentFetchByIdResult.h */,
+				DAA820F61792F03A005EF8C4 /* ShipmentFetchByIdResult.m */,
 			);
 			name = Results;
 			sourceTree = "<group>";
@@ -276,8 +281,8 @@
 		DA7FFF5A176F326000BFDC9C /* Connections */ = {
 			isa = PBXGroup;
 			children = (
-				DA9C8AFB178AFF63008E2973 /* NSData+Base64.h */,
-				DA9C8AFC178AFF63008E2973 /* NSData+Base64.m */,
+				DA38EB4C178DB846005D4F0A /* Base64Helper.h */,
+				DA38EB4D178DB846005D4F0A /* Base64Helper.m */,
 				DA7FFF5B176F327F00BFDC9C /* PostMasterRequest.h */,
 				DA7FFF5C176F327F00BFDC9C /* PostMasterRequest.m */,
 			);
@@ -414,7 +419,8 @@
 				DA07064F17788A4F00F341ED /* ShipmentTrackResult.m in Sources */,
 				DA9C8AF4178AE0C6008E2973 /* AddressValidationResult.m in Sources */,
 				DA9C8AF7178AF309008E2973 /* ShipmentVoidResult.m in Sources */,
-				DA9C8AFD178AFF63008E2973 /* NSData+Base64.m in Sources */,
+				DA38EB4E178DB846005D4F0A /* Base64Helper.m in Sources */,
+				DAA820F71792F03A005EF8C4 /* ShipmentFetchByIdResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,7 +429,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA7FFF4D176F1F1800BFDC9C /* PostmasteriOSTests.m in Sources */,
-				DA9C8AFE178AFF63008E2973 /* NSData+Base64.m in Sources */,
+				DA38EB4F178DB846005D4F0A /* Base64Helper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

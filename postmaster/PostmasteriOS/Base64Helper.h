@@ -38,13 +38,11 @@
 
 #import <Foundation/NSData.h>
 
-@class NSString;
-
-@interface NSData (Base64)
+@interface Base64Helper : NSObject
 
 + (NSData *) dataFromBase64String: (NSString *) base64String;
-- (id) initWithBase64String: (NSString *) base64String;
-- (NSString *) base64EncodedString;
-- (NSString *)hexadecimalString;
+//+ (NSData*) dataWithBase64String: (NSString *) base64String;
++ (NSString *) base64EncodedStringFromData:(NSData*)data;
++ (NSString *)hexadecimalStringFromData:(NSData*)data;
 
 @end

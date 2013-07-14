@@ -8,9 +8,9 @@
 
 #import "PostMasterRequest.h"
 #import "Settings.h"
-#import "NSData+Base64.h"
 #import "Postmaster.h"
 #import "Shipment.h"
+#import "Base64Helper.h"
 
 @implementation PostMasterRequest
 
@@ -56,6 +56,11 @@
 
 +(PostMasterRequest*)fetchShipmentRequestWithCursor:(NSString*)cursor andLimit:(NSInteger)limit{
     PostMasterRequest* request = [self requestWithHTTPMethod:CONN_TYPE_GET version:API_VERSION_1 path:@"/shipments" parameters:nil];
+    return request;
+}
+
++(PostMasterRequest*)fetchShipmentById:(NSInteger)shipmentId{
+    PostMasterRequest* request = [self requestWithHTTPMethod:CONN_TYPE_GET version:API_VERSION_1 path:[NSString stringWithFormat:@"/shipments/%d",shipmentId] parameters:nil];
     return request;
 }
 
@@ -111,7 +116,9 @@
 +(NSString *)getAuthEncodedString{
     NSString* toHash = [NSString stringWithFormat:@"%@:",[[Postmaster instance] getAPIKey]];
     NSData* data = [toHash dataUsingEncoding:NSUTF8StringEncoding];
-    return [data base64EncodedString];
+    NSString* encoded = [Base64Helper base64EncodedStringFromData:data];
+    //return [data base64EncodedString];
+    return encoded;
 }
 
 @end

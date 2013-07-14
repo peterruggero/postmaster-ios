@@ -32,6 +32,7 @@ NSString *const RATE_QUERY_KEY_PACKAGING = @"packaging";
 
 -(id)initWithJSON:(NSDictionary*) jsonDict{
     [NSException raise:@"Bad constructor used" format:@"This entity is one way only for client applications. It can be only sent to API"];
+    return nil;
 }
 
 @end

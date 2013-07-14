@@ -15,6 +15,8 @@
 
 @property(nonatomic,retain) NSError* commonHTTPError;
 
+
+-(BOOL)hasError;
 -(void)wrapJSONErrorData:(NSDictionary*)json;
 -(NSString*)jsonErrorMessage;
 -(NSInteger) jsonErrorCode;
