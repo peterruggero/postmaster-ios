@@ -24,7 +24,7 @@
 		DA24BA9D178D94BD00E74ECE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA24BA75178D94BD00E74ECE /* Foundation.framework */; };
 		DA24BAA5178D94BD00E74ECE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA24BAA3178D94BD00E74ECE /* InfoPlist.strings */; };
 		DA24BAA8178D94BD00E74ECE /* iOSPostmasterSimpleClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA24BAA7178D94BD00E74ECE /* iOSPostmasterSimpleClientTests.m */; };
-		DAA820F31792D48E005EF8C4 /* libPostmasteriOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DAAA39C91792D40E00370211 /* libPostmasteriOS.a */; };
+		DA7A8B00179341E3002CA605 /* libPostmasteriOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DAAA39C91792D40E00370211 /* libPostmasteriOS.a */; };
 		DAA820FB17930154005EF8C4 /* logo_50.png in Resources */ = {isa = PBXBuildFile; fileRef = DAA820FA17930154005EF8C4 /* logo_50.png */; };
 		DAA820FD179301A1005EF8C4 /* logo_50_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = DAA820FC179301A1005EF8C4 /* logo_50_ipad.png */; };
 /* End PBXBuildFile section */
@@ -36,6 +36,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = DA24BA6F178D94BD00E74ECE;
 			remoteInfo = iOSPostmasterSimpleClient;
+		};
+		DA7A8B0117934240002CA605 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DAAA39C31792D40E00370211 /* PostmasteriOS.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = DA7FFF2A176F1F1800BFDC9C;
+			remoteInfo = PostmasteriOS;
 		};
 		DAAA39C81792D40E00370211 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -87,7 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAA820F31792D48E005EF8C4 /* libPostmasteriOS.a in Frameworks */,
+				DA7A8B00179341E3002CA605 /* libPostmasteriOS.a in Frameworks */,
 				DA24BA74178D94BD00E74ECE /* UIKit.framework in Frameworks */,
 				DA24BA76178D94BD00E74ECE /* Foundation.framework in Frameworks */,
 				DA24BA78178D94BD00E74ECE /* CoreGraphics.framework in Frameworks */,
@@ -210,6 +217,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				DA7A8B0217934240002CA605 /* PBXTargetDependency */,
 			);
 			name = iOSPostmasterSimpleClient;
 			productName = iOSPostmasterSimpleClient;
@@ -353,6 +361,11 @@
 			isa = PBXTargetDependency;
 			target = DA24BA6F178D94BD00E74ECE /* iOSPostmasterSimpleClient */;
 			targetProxy = DA24BA9E178D94BD00E74ECE /* PBXContainerItemProxy */;
+		};
+		DA7A8B0217934240002CA605 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PostmasteriOS;
+			targetProxy = DA7A8B0117934240002CA605 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
