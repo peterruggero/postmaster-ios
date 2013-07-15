@@ -147,7 +147,6 @@
 		DA9C8AF6178AF308008E2973 /* ShipmentVoidResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShipmentVoidResult.m; sourceTree = "<group>"; };
 		DAA820F51792F03A005EF8C4 /* ShipmentFetchByIdResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipmentFetchByIdResult.h; sourceTree = "<group>"; };
 		DAA820F61792F03A005EF8C4 /* ShipmentFetchByIdResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShipmentFetchByIdResult.m; sourceTree = "<group>"; };
-		DAAC0EDB17940CBE0094D9AD /* MJGAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MJGAvailability.h; path = "../../../../../../../Downloads/MJGFoundation-master/Source/Utilities/MJGAvailability.h"; sourceTree = "<group>"; };
 		DAAC0EDE179417F40094D9AD /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
 		DAAC0EDF179417F40094D9AD /* SBJsonStreamWriterState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriterState.m; sourceTree = "<group>"; };
 		DAAC0EE0179417F40094D9AD /* SBJsonStreamWriterState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriterState.h; sourceTree = "<group>"; };
@@ -169,6 +168,7 @@
 		DAAC0EF0179417F40094D9AD /* SBJsonStreamParserState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserState.m; sourceTree = "<group>"; };
 		DAAC0EF1179417F40094D9AD /* SBJsonStreamTokeniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamTokeniser.m; sourceTree = "<group>"; };
 		DAAC0EF2179417F40094D9AD /* SBJsonStreamTokeniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamTokeniser.h; sourceTree = "<group>"; };
+		DAAC0F0817941DEA0094D9AD /* MJGAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJGAvailability.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,6 +253,7 @@
 		DA7FFF30176F1F1800BFDC9C /* PostmasteriOS */ = {
 			isa = PBXGroup;
 			children = (
+				DAAC0F0817941DEA0094D9AD /* MJGAvailability.h */,
 				DAAC0EDD179417E10094D9AD /* JSON */,
 				DA7FFF5E176F355B00BFDC9C /* Categories */,
 				DA7FFF5A176F326000BFDC9C /* Connections */,
@@ -324,7 +325,6 @@
 		DA7FFF5A176F326000BFDC9C /* Connections */ = {
 			isa = PBXGroup;
 			children = (
-				DAAC0EDB17940CBE0094D9AD /* MJGAvailability.h */,
 				DA38EB4C178DB846005D4F0A /* Base64Helper.h */,
 				DA38EB4D178DB846005D4F0A /* Base64Helper.m */,
 				DA7FFF5B176F327F00BFDC9C /* PostMasterRequest.h */,
