@@ -9,6 +9,7 @@
 #import "Shipment.h"
 #import "Postmaster.h"
 #import "PostMasterRequest.h"
+#import "SBJson.h"
 
 @implementation Shipment
 
@@ -87,12 +88,13 @@ NSString *const SHIPMENT_KEY_REFERENCE = @"reference";
     NSError *receivedError;
     
     NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&receivedResponse error:&receivedError];
-    
+
     if(receivedError){
         result = [result initWithCommonHTTPError:receivedError];
     }
     else{
-        NSMutableDictionary* jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&receivedError];
+        SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
+        NSMutableDictionary* jsonResponse =[jsonParser objectWithData:data];
         result = [result initWithJSON:jsonResponse];
     }
     

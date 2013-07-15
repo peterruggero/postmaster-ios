@@ -8,6 +8,7 @@
 
 #import "Address.h"
 #import "PostMasterRequest.h"
+#import "SBJson.h"
 
 NSString *const DICT_KEY_ADDRESSES = @"addresses";
 
@@ -38,7 +39,8 @@ NSString *const ADDRESS_KEY_ZIP_CODE = @"zip_code";
         result = [[AddressValidationResult alloc] initWithCommonHTTPError:receivedError];
     }
     else{
-        NSMutableDictionary* jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&receivedError];
+        SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
+        NSMutableDictionary* jsonResponse =[jsonParser objectWithData:data];
         result = [[AddressValidationResult alloc] initWithJSON:jsonResponse];
     }
     

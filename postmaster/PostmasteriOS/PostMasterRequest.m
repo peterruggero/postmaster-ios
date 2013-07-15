@@ -11,6 +11,7 @@
 #import "Postmaster.h"
 #import "Shipment.h"
 #import "Base64Helper.h"
+#import "SBJson.h"
 
 @implementation PostMasterRequest
 
@@ -67,9 +68,9 @@
 - (void)addContentLengthWithDictionary:(NSDictionary*)dictionary;
 {
     NSError *jsonError;
-    NSData *requestData = [NSJSONSerialization dataWithJSONObject:dictionary
-                                                          options:0
-                                                            error:&jsonError];
+    
+    SBJsonWriter* writer = [[SBJsonWriter alloc] init];
+    NSData *requestData = [writer dataWithObject:dictionary ];
     
     if(jsonError)
         return;
