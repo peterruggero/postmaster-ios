@@ -109,7 +109,7 @@
 -(IBAction)didTouchFetchById:(id)sender{
     if([self validateInput:shipmentIdField ofLabel:@"Shipment ID"]){
         [self dispatchTask:^OperationResult *{
-            return [Shipment fetchShipmentById:[[shipmentIdField text] integerValue]];
+            return [Shipment fetchShipmentById:[NSNumber numberWithLongLong:[[shipmentIdField text] longLongValue]]];
         } withCompletionHandler:^(OperationResult *result) {
             
             ShipmentFetchByIdResult* shipmentResult = (ShipmentFetchByIdResult*)result;

@@ -125,7 +125,7 @@
 
 -(void)test_03_trackShipment{
     
-    ShipmentTrackResult* result = [Shipment track:@6080711618461696];
+    ShipmentTrackResult* result = [Shipment track:[NSNumber numberWithLongLong:6080711618461696]];
     
     if(![result trackingDetails]){
         STFail(@"Nothing was returned");

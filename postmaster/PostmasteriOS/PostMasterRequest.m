@@ -35,7 +35,7 @@
 }
 
 +(PostMasterRequest*)trackShipmentRequest:(NSNumber*)shipmentId{
-        PostMasterRequest* request = [self requestWithHTTPMethod:CONN_TYPE_GET version:API_VERSION_1 path:[NSString stringWithFormat:@"/shipments/%ld/track",[shipmentId longValue]] parameters:nil];
+        PostMasterRequest* request = [self requestWithHTTPMethod:CONN_TYPE_GET version:API_VERSION_1 path:[NSString stringWithFormat:@"/shipments/%lld/track",[shipmentId longLongValue]] parameters:nil];
         return request;
 }
 
@@ -75,7 +75,7 @@
 }
 
 +(PostMasterRequest*)fetchShipmentById:(NSNumber*)shipmentId{
-    PostMasterRequest* request = [self requestWithHTTPMethod:CONN_TYPE_GET version:API_VERSION_1 path:[NSString stringWithFormat:@"/shipments/%ld",[shipmentId longValue]] parameters:nil];
+    PostMasterRequest* request = [self requestWithHTTPMethod:CONN_TYPE_GET version:API_VERSION_1 path:[NSString stringWithFormat:@"/shipments/%lld",[shipmentId longLongValue]] parameters:nil];
     return request;
 }
 
