@@ -8,8 +8,6 @@
 
 #import "Shipment.h"
 #import "Postmaster.h"
-#import "PostMasterRequest.h"
-#import "SBJson.h"
 
 @implementation Shipment
 
@@ -82,25 +80,6 @@ NSString *const SHIPMENT_KEY_REFERENCE = @"reference";
     return nil;
 }
 
-+(id)executeRequest:(PostMasterRequest*)request andFillResult:(OperationResult*)result{
-    
-    NSHTTPURLResponse *receivedResponse;
-    NSError *receivedError;
-    
-    NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&receivedResponse error:&receivedError];
-
-    if(receivedError){
-        result = [result initWithCommonHTTPError:receivedError];
-    }
-    else{
-        SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
-        NSMutableDictionary* jsonResponse =[jsonParser objectWithData:data];
-        result = [result initWithJSON:jsonResponse];
-    }
-    
-    return result;
-}
-
 -(ShipmentCreationResult*)createShipment{
     PostMasterRequest *request = [PostMasterRequest createShipmentRequest:self];
     return [Shipment executeRequest:request andFillResult:[ShipmentCreationResult alloc]];
@@ -112,18 +91,18 @@ NSString *const SHIPMENT_KEY_REFERENCE = @"reference";
 }
 
 
-+(ShipmentFetchByIdResult*)fetchShipmentById:(NSInteger)shipmentId{
++(ShipmentFetchByIdResult*)fetchShipmentById:(NSNumber*)shipmentId{
     PostMasterRequest *request = [PostMasterRequest fetchShipmentById:shipmentId];
     return [self executeRequest:request andFillResult:[ShipmentFetchByIdResult alloc]];
 }
 
-+(ShipmentTrackResult*)track:(NSInteger) shipmentId{
++(ShipmentTrackResult*)track:(NSNumber*) shipmentId{
     PostMasterRequest *request = [PostMasterRequest trackShipmentRequest:shipmentId];
     return [self executeRequest:request andFillResult:[ShipmentTrackResult alloc]];  
 }
 
 -(ShipmentTrackResult*)track{
-    return [Shipment track:[[self shipmentId]integerValue]];
+    return [Shipment track:[self shipmentId]];
 }
 
 +(ShipmentTrackByReferenceResult*)trackByReferenceNumber:(NSString*)referenceNumber{

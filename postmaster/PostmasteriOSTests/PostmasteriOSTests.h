@@ -8,7 +8,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import "Postmaster.h"
-#define API_KEY @"tt_MTEwMDE6MVZCS2t2bWtBZG1NbkpYeUctdWFETlRFby1r"
+#define API_KEY @"tt_ODAwMTpSa09JNHktVzJUaFVwZFFCeFBfbTlyUm1UNWs"//@"tt_MTEwMDE6MVZCS2t2bWtBZG1NbkpYeUctdWFETlRFby1r"
 
 
 @interface PostmasteriOSTests : SenTestCase

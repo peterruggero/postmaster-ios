@@ -65,8 +65,8 @@ extern NSString *const SHIPMENT_KEY_REFERENCE;
 
 -(ShipmentCreationResult*)createShipment;
 +(ShipmentFetchResult*)fetchShipmentsWithCursor:(NSString*)cursor andLimit:(NSInteger)limit;
-+(ShipmentFetchResult*)fetchShipmentById:(NSInteger)shipmentId;
-+(ShipmentTrackResult*)track:(NSInteger) shipmentId;
++(ShipmentFetchResult*)fetchShipmentById:(NSNumber*)shipmentId;
++(ShipmentTrackResult*)track:(NSNumber*) shipmentId;
 -(ShipmentTrackResult*)track;
 +(ShipmentTrackByReferenceResult*)trackByReferenceNumber:(NSString*)referenceNumber;
 +(ShipmentVoidResult*)voidShipment:(NSInteger)shipmentId;

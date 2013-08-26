@@ -36,8 +36,8 @@
 		DA7FFF4D176F1F1800BFDC9C /* PostmasteriOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7FFF4C176F1F1800BFDC9C /* PostmasteriOSTests.m */; };
 		DA7FFF59176F293B00BFDC9C /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7FFF58176F293B00BFDC9C /* Address.m */; };
 		DA7FFF5D176F327F00BFDC9C /* PostMasterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7FFF5C176F327F00BFDC9C /* PostMasterRequest.m */; };
-		DA7FFF61176F357F00BFDC9C /* NSDictionary+Postmaster.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7FFF60176F357F00BFDC9C /* NSDictionary+Postmaster.m */; };
 		DA7FFF64176F3C4C00BFDC9C /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7FFF63176F3C4C00BFDC9C /* Settings.m */; };
+		DA974B6D17C79D38002783C9 /* PackageFitResult.m in Sources */ = {isa = PBXBuildFile; fileRef = DA974B6C17C79D38002783C9 /* PackageFitResult.m */; };
 		DA9C8AF4178AE0C6008E2973 /* AddressValidationResult.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9C8AF3178AE0C6008E2973 /* AddressValidationResult.m */; };
 		DA9C8AF7178AF309008E2973 /* ShipmentVoidResult.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9C8AF6178AF308008E2973 /* ShipmentVoidResult.m */; };
 		DAA820F71792F03A005EF8C4 /* ShipmentFetchByIdResult.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA820F61792F03A005EF8C4 /* ShipmentFetchByIdResult.m */; };
@@ -61,6 +61,13 @@
 		DAAC0F04179417F40094D9AD /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAC0EF0179417F40094D9AD /* SBJsonStreamParserState.m */; };
 		DAAC0F05179417F40094D9AD /* SBJsonStreamTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAC0EF1179417F40094D9AD /* SBJsonStreamTokeniser.m */; };
 		DAAC0F06179417F40094D9AD /* SBJsonStreamTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAC0EF1179417F40094D9AD /* SBJsonStreamTokeniser.m */; };
+		DABC2F6F17C6132800B26397 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = DABC2F6E17C6132800B26397 /* Item.m */; };
+		DABC2F7217C6133600B26397 /* Box.m in Sources */ = {isa = PBXBuildFile; fileRef = DABC2F7117C6133600B26397 /* Box.m */; };
+		DABC2F7517C619A000B26397 /* BoxFetchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = DABC2F7417C619A000B26397 /* BoxFetchResult.m */; };
+		DABC2F7817C61BA800B26397 /* BoxCreationResult.m in Sources */ = {isa = PBXBuildFile; fileRef = DABC2F7717C61BA800B26397 /* BoxCreationResult.m */; };
+		DABC2F7B17C620D100B26397 /* PackageFitQueryMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = DABC2F7A17C620D000B26397 /* PackageFitQueryMessage.m */; };
+		DABC2F7E17C6245000B26397 /* BoxData.m in Sources */ = {isa = PBXBuildFile; fileRef = DABC2F7D17C6245000B26397 /* BoxData.m */; };
+		DABC2F8117C6254000B26397 /* PackageFitInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DABC2F8017C6253F00B26397 /* PackageFitInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,10 +144,10 @@
 		DA7FFF58176F293B00BFDC9C /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Address.m; sourceTree = "<group>"; };
 		DA7FFF5B176F327F00BFDC9C /* PostMasterRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostMasterRequest.h; sourceTree = "<group>"; };
 		DA7FFF5C176F327F00BFDC9C /* PostMasterRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostMasterRequest.m; sourceTree = "<group>"; };
-		DA7FFF5F176F357F00BFDC9C /* NSDictionary+Postmaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Postmaster.h"; sourceTree = "<group>"; };
-		DA7FFF60176F357F00BFDC9C /* NSDictionary+Postmaster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Postmaster.m"; sourceTree = "<group>"; };
 		DA7FFF62176F3C4C00BFDC9C /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		DA7FFF63176F3C4C00BFDC9C /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
+		DA974B6B17C79D38002783C9 /* PackageFitResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackageFitResult.h; sourceTree = "<group>"; };
+		DA974B6C17C79D38002783C9 /* PackageFitResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PackageFitResult.m; sourceTree = "<group>"; };
 		DA9C8AF2178AE0C6008E2973 /* AddressValidationResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressValidationResult.h; sourceTree = "<group>"; };
 		DA9C8AF3178AE0C6008E2973 /* AddressValidationResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressValidationResult.m; sourceTree = "<group>"; };
 		DA9C8AF5178AF308008E2973 /* ShipmentVoidResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipmentVoidResult.h; sourceTree = "<group>"; };
@@ -169,6 +176,20 @@
 		DAAC0EF1179417F40094D9AD /* SBJsonStreamTokeniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamTokeniser.m; sourceTree = "<group>"; };
 		DAAC0EF2179417F40094D9AD /* SBJsonStreamTokeniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamTokeniser.h; sourceTree = "<group>"; };
 		DAAC0F0817941DEA0094D9AD /* MJGAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJGAvailability.h; sourceTree = "<group>"; };
+		DABC2F6D17C6132800B26397 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		DABC2F6E17C6132800B26397 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		DABC2F7017C6133600B26397 /* Box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box.h; sourceTree = "<group>"; };
+		DABC2F7117C6133600B26397 /* Box.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Box.m; sourceTree = "<group>"; };
+		DABC2F7317C619A000B26397 /* BoxFetchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxFetchResult.h; sourceTree = "<group>"; };
+		DABC2F7417C619A000B26397 /* BoxFetchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxFetchResult.m; sourceTree = "<group>"; };
+		DABC2F7617C61BA800B26397 /* BoxCreationResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxCreationResult.h; sourceTree = "<group>"; };
+		DABC2F7717C61BA800B26397 /* BoxCreationResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxCreationResult.m; sourceTree = "<group>"; };
+		DABC2F7917C620D000B26397 /* PackageFitQueryMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackageFitQueryMessage.h; sourceTree = "<group>"; };
+		DABC2F7A17C620D000B26397 /* PackageFitQueryMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PackageFitQueryMessage.m; sourceTree = "<group>"; };
+		DABC2F7C17C6244F00B26397 /* BoxData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxData.h; sourceTree = "<group>"; };
+		DABC2F7D17C6245000B26397 /* BoxData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxData.m; sourceTree = "<group>"; };
+		DABC2F7F17C6253F00B26397 /* PackageFitInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackageFitInfo.h; sourceTree = "<group>"; };
+		DABC2F8017C6253F00B26397 /* PackageFitInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PackageFitInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +238,12 @@
 				DA9C8AF6178AF308008E2973 /* ShipmentVoidResult.m */,
 				DAA820F51792F03A005EF8C4 /* ShipmentFetchByIdResult.h */,
 				DAA820F61792F03A005EF8C4 /* ShipmentFetchByIdResult.m */,
+				DABC2F7317C619A000B26397 /* BoxFetchResult.h */,
+				DABC2F7417C619A000B26397 /* BoxFetchResult.m */,
+				DABC2F7617C61BA800B26397 /* BoxCreationResult.h */,
+				DABC2F7717C61BA800B26397 /* BoxCreationResult.m */,
+				DA974B6B17C79D38002783C9 /* PackageFitResult.h */,
+				DA974B6C17C79D38002783C9 /* PackageFitResult.m */,
 			);
 			name = Results;
 			sourceTree = "<group>";
@@ -255,7 +282,6 @@
 			children = (
 				DAAC0F0817941DEA0094D9AD /* MJGAvailability.h */,
 				DAAC0EDD179417E10094D9AD /* JSON */,
-				DA7FFF5E176F355B00BFDC9C /* Categories */,
 				DA7FFF5A176F326000BFDC9C /* Connections */,
 				DA7FFF56176F292300BFDC9C /* Entities */,
 				DA07063A1778890700F341ED /* Results */,
@@ -318,6 +344,16 @@
 				DA0706351774787A00F341ED /* DeliveryTimeQueryMessage.m */,
 				DA070637177479A700F341ED /* Shipment.h */,
 				DA070638177479A800F341ED /* Shipment.m */,
+				DABC2F6D17C6132800B26397 /* Item.h */,
+				DABC2F6E17C6132800B26397 /* Item.m */,
+				DABC2F7017C6133600B26397 /* Box.h */,
+				DABC2F7117C6133600B26397 /* Box.m */,
+				DABC2F7917C620D000B26397 /* PackageFitQueryMessage.h */,
+				DABC2F7A17C620D000B26397 /* PackageFitQueryMessage.m */,
+				DABC2F7C17C6244F00B26397 /* BoxData.h */,
+				DABC2F7D17C6245000B26397 /* BoxData.m */,
+				DABC2F7F17C6253F00B26397 /* PackageFitInfo.h */,
+				DABC2F8017C6253F00B26397 /* PackageFitInfo.m */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -331,15 +367,6 @@
 				DA7FFF5C176F327F00BFDC9C /* PostMasterRequest.m */,
 			);
 			name = Connections;
-			sourceTree = "<group>";
-		};
-		DA7FFF5E176F355B00BFDC9C /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				DA7FFF5F176F357F00BFDC9C /* NSDictionary+Postmaster.h */,
-				DA7FFF60176F357F00BFDC9C /* NSDictionary+Postmaster.m */,
-			);
-			name = Categories;
 			sourceTree = "<group>";
 		};
 		DAAC0EDD179417E10094D9AD /* JSON */ = {
@@ -471,7 +498,6 @@
 				DA7FFF36176F1F1800BFDC9C /* Postmaster.m in Sources */,
 				DA7FFF59176F293B00BFDC9C /* Address.m in Sources */,
 				DA7FFF5D176F327F00BFDC9C /* PostMasterRequest.m in Sources */,
-				DA7FFF61176F357F00BFDC9C /* NSDictionary+Postmaster.m in Sources */,
 				DA7FFF64176F3C4C00BFDC9C /* Settings.m in Sources */,
 				DA07053A17733E1400F341ED /* PostmasterEntity.m in Sources */,
 				DA07053D177350AB00F341ED /* Package.m in Sources */,
@@ -503,6 +529,14 @@
 				DAAC0F01179417F40094D9AD /* SBJsonStreamWriterAccumulator.m in Sources */,
 				DAAC0F03179417F40094D9AD /* SBJsonStreamParserState.m in Sources */,
 				DAAC0F05179417F40094D9AD /* SBJsonStreamTokeniser.m in Sources */,
+				DABC2F6F17C6132800B26397 /* Item.m in Sources */,
+				DABC2F7217C6133600B26397 /* Box.m in Sources */,
+				DABC2F7517C619A000B26397 /* BoxFetchResult.m in Sources */,
+				DABC2F7817C61BA800B26397 /* BoxCreationResult.m in Sources */,
+				DABC2F7B17C620D100B26397 /* PackageFitQueryMessage.m in Sources */,
+				DABC2F7E17C6245000B26397 /* BoxData.m in Sources */,
+				DABC2F8117C6254000B26397 /* PackageFitInfo.m in Sources */,
+				DA974B6D17C79D38002783C9 /* PackageFitResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

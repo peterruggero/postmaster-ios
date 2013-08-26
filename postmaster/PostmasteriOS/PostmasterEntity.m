@@ -7,6 +7,8 @@
 //
 
 #import "PostmasterEntity.h"
+#import "SBJson.h"
+#import "OperationResult.h"
 
 @implementation PostmasterEntity
 -(void)putPropertyToJsonReadyDictionary:(NSMutableDictionary*)dict ofKey:(NSString*)key andObject:(NSObject*)object{
@@ -29,6 +31,25 @@
     for(NSDictionary* item in jsonArray){
         PostmasterEntity* entity = [[self alloc] initWithJSON:item];
         [result addObject:entity];
+    }
+    
+    return result;
+}
+
++(id)executeRequest:(PostMasterRequest*)request andFillResult:(OperationResult*)result{
+    
+    NSHTTPURLResponse *receivedResponse;
+    NSError *receivedError;
+    
+    NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&receivedResponse error:&receivedError];
+    
+    if(receivedError){
+        result = [result initWithCommonHTTPError:receivedError];
+    }
+    else{
+        SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
+        NSMutableDictionary* jsonResponse =[jsonParser objectWithData:data];
+        result = [result initWithJSON:jsonResponse];
     }
     
     return result;
