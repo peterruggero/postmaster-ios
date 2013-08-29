@@ -1,20 +1,20 @@
 //
-//  ShipmentFetchByIdResult.m
+//  BoxCreationResult.m
 //  PostmasteriOS
 //
-//  Created by luczakp on 14.07.2013.
+//  Created by luczakp on 22.08.2013.
 //  Copyright (c) 2013 STXNext. All rights reserved.
 //
 
-#import "ShipmentFetchByIdResult.h"
-#import "Shipment.h"
+#import "BoxCreationResult.h"
+#import "Box.h"
 
-@implementation ShipmentFetchByIdResult
+@implementation BoxCreationResult
 
 -(id)initWithJSON:(NSDictionary*)json{
     self = [super init];
     if([json objectForKey:@"id"]){
-        _shipment = [[Shipment alloc] initWithJSON:json];
+        _boxId = [json objectForKey:@"id"];
     }else{
         [self wrapJSONData:json];
     }

@@ -13,6 +13,9 @@
 #import "Service.h"
 #import "DeliveryTimeQueryMessage.h"
 #import "RateQueryMessage.h"
+#import "Box.h"
+#import "PackageFitQueryMessage.h"
+#import "MonitorPackageQueryMessage.h"
 
 @implementation PostmasteriOSTests
 
@@ -96,7 +99,7 @@
    
     ShipmentCreationResult* result = [sh createShipment];
     
-    if(!result.commonHTTPError && ![result jsonErrorMessage] && ([result shipment])){
+    if(![[result shipment] shipmentId]){
         STFail(@"Shipment creation failed");
     }
     NSLog(@"%@",result);
@@ -123,9 +126,9 @@
 
 -(void)test_03_trackShipment{
     
-    ShipmentTrackResult* result = [Shipment track:1002];
+    ShipmentTrackResult* result = [Shipment track:[NSNumber numberWithLongLong:6080711618461696]];
     
-    if(![result trackingDetails]){
+    if(![result trackingDetails] && [result jsonCode]!=400){
         STFail(@"Nothing was returned");
     }
     NSLog(@"%@",result);
@@ -137,7 +140,7 @@
     
     ShipmentTrackByReferenceResult* result = [Shipment trackByReferenceNumber:@"1Z8V81310297718490"];
 
-    if(([[result trackingHistoryList] count]) == 0 && ![result jsonErrorMessage]){
+    if(([[result trackingHistoryList] count]) == 0 && ![result jsonMessage]){
         STFail(@"Nothing was returned");
     }
     
@@ -145,8 +148,24 @@
     
 }
 
- 
--(void)test_05_voidShipment{
+-(void)test_05_monitorPackage{
+    MonitorPackageQueryMessage* query = [[MonitorPackageQueryMessage alloc] init];
+    query.callbackUrl = @"http://example.com/your-http-post-listener";
+    [query.events addObject:MONITOR_PACKAGE_EVENT_DELIVERED];
+    [query.events addObject:MONITOR_PACKAGE_EVENT_EXCEPTION];
+    query.tracking = @"1ZW470V80310800043";
+    
+    MonitorPackageResult* result = [Shipment monitorExternalPackage:query];
+    
+    if(![[result status] isEqualToString:@"OK"]){
+        STFail(@"No webhook registered");
+    }
+    
+    NSLog(@"%@",result);
+    
+}
+
+-(void)test_06_voidShipment{
     
     ShipmentVoidResult* result = [Shipment voidShipment:1004];
     if([result voidSuccess]){
@@ -156,7 +175,7 @@
         NSLog(@"VOID FAILED");
     }
     
-    if(![result voidSuccess] && ![result jsonErrorMessage]){
+    if(![result voidSuccess] && ![result jsonMessage]){
         STFail(@"Nothing was returned");
     }
     
@@ -165,7 +184,7 @@
 }
 
  
--(void)test_06_deliveryTimesTest{
+-(void)test_07_deliveryTimesTest{
        
     DeliveryTimeQueryMessage* service = [[DeliveryTimeQueryMessage alloc] init];
     service.carrier = @"ups";
@@ -182,7 +201,7 @@
 }
 
 
--(void)test_07_ratesTest{
+-(void)test_08_ratesTest{
     
     RateQueryMessage* message = [[RateQueryMessage alloc] init];
     message.carrier = @"fedex";
@@ -199,5 +218,72 @@
     NSLog(@"%@",result);
 }
  
+
+-(void)test_09_boxCreateTest{
+    Box* box = [[Box alloc] init];
+    box.width = @10;
+    box.height = @12;
+    box.length = @8;
+    box.name = [NSString stringWithFormat:@"My fancy box %f",NSTimeIntervalSince1970];
+    
+    BoxCreationResult* result = [box createBox];
+    if(!result.boxId){
+        STFail(@"No rate returned");
+    }
+    NSLog(@"%@",result);
+}
+
+-(void)test_10_packageFetchTest{
+    BoxFetchResult* result = [Box fetchBoxesWithCursor:nil andLimit:4];
+    if(![result boxes]){
+        STFail(@"No rate returned");
+    }
+    NSLog(@"%@",result);
+}
+
+-(void)test_11_packageFitTest{
+    PackageFitQueryMessage* query = [[PackageFitQueryMessage alloc] init];
+    Box* box1 = [[Box alloc] init];
+    box1.width = @6;
+    box1.length = @6;
+    box1.height = @6;
+    box1.sku = @"123ABC";
+    
+    Box* box2 = [[Box alloc] init];
+    box2.width = @6;
+    box2.length = @6;
+    box2.height = @6;
+    box2.sku = @"123ABC";
+    
+    Item* item = [[Item alloc] init];
+    item.width = @2.2;
+    item.length = @3;
+    item.height = @1;
+    item.count = @2;
+    
+    [query.packages addObject:box1];
+    [query.packages addObject:box2];
+    [query.items addObject:item];
+    
+    PackageFitResult* result = [Box fit:query];
+    
+    if(![result fitInfo]){
+        STFail(@"No rate returned");
+    }
+    
+
+    for(BoxData* boxData in [[result fitInfo] boxes]){
+        NSLog(@"Box:%@\n",[[boxData box] name]);
+        for(Item* item in [boxData items]){
+            NSLog(@"Item:%@",[item name]);
+        }
+    }
+
+    
+    
+    NSLog(@"%@",[[result fitInfo] imageUrl]);
+    
+}
+
 
 @end

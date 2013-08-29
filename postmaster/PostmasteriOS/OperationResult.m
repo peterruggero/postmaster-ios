@@ -10,23 +10,23 @@
 
 @implementation OperationResult
 
--(NSString*)jsonErrorMessage{
-    return _jsonErrorMessage;
+-(NSString*)jsonMessage{
+    return _jsonMessage;
 }
--(NSInteger) jsonErrorCode{
-    return _jsonErrorCode;
+-(NSInteger) jsonCode{
+    return _jsonCode;
 }
 
 -(BOOL)hasError{
-    if(!_jsonErrorCode && !_jsonErrorMessage && !self.commonHTTPError){
+    if(!_jsonCode && !_jsonMessage && !self.commonHTTPError){
         return NO;
     }
     return YES;
 }
 
--(void)wrapJSONErrorData:(NSDictionary*)json{
-    _jsonErrorMessage = [json objectForKey:@"message"];
-    _jsonErrorCode = [[json valueForKey:@"code"] integerValue];
+-(void)wrapJSONData:(NSDictionary*)json{
+    _jsonMessage = [json objectForKey:@"message"];
+    _jsonCode = [[json valueForKey:@"code"] integerValue];
 }
 
 -(id)initWithCommonHTTPError:(NSError*)error{

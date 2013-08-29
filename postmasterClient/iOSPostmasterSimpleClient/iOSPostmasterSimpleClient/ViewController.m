@@ -45,7 +45,7 @@
 }
 
 -(void)alertWithOperationResultError:(OperationResult*)result{
-    NSString* output = [NSString stringWithFormat:@"json error:\n%d %@",[result jsonErrorCode],[result jsonErrorMessage]];
+    NSString* output = [NSString stringWithFormat:@"json error:\n%d %@",[result jsonCode],[result jsonMessage]];
     if([result commonHTTPError]){
         output = [output stringByAppendingString:[[result commonHTTPError] localizedDescription]];
     }
@@ -109,7 +109,7 @@
 -(IBAction)didTouchFetchById:(id)sender{
     if([self validateInput:shipmentIdField ofLabel:@"Shipment ID"]){
         [self dispatchTask:^OperationResult *{
-            return [Shipment fetchShipmentById:[[shipmentIdField text] integerValue]];
+            return [Shipment fetchShipmentById:[NSNumber numberWithLongLong:[[shipmentIdField text] longLongValue]]];
         } withCompletionHandler:^(OperationResult *result) {
             
             ShipmentFetchByIdResult* shipmentResult = (ShipmentFetchByIdResult*)result;

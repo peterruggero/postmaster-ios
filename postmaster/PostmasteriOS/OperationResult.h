@@ -9,17 +9,17 @@
 #import "PostmasterEntity.h"
 
 @interface OperationResult : NSObject{
-    NSString* _jsonErrorMessage;
-    NSInteger _jsonErrorCode;
+    NSString* _jsonMessage;
+    NSInteger _jsonCode;
 }
 
 @property(nonatomic,retain) NSError* commonHTTPError;
 
 
 -(BOOL)hasError;
--(void)wrapJSONErrorData:(NSDictionary*)json;
--(NSString*)jsonErrorMessage;
--(NSInteger) jsonErrorCode;
+-(void)wrapJSONData:(NSDictionary*)json;
+-(NSString*)jsonMessage;
+-(NSInteger) jsonCode;
 -(id)initWithJSON:(NSDictionary*)json;
 -(id)initWithCommonHTTPError:(NSError*)error;
 

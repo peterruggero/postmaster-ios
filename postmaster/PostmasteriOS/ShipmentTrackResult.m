@@ -18,7 +18,7 @@
         _trackingDetails = [TrackingDetails getFromJSONArray:[json objectForKey:@"results"]];
     }
     else{
-        [self wrapJSONErrorData:json];
+        [self wrapJSONData:json];
     }
     
     return self;

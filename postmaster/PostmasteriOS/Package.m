@@ -10,7 +10,7 @@
 
 @implementation Package
 
-NSString *const PACKAGE_KEY_DIMENSION_UNITS = @"dimention_units";
+NSString *const PACKAGE_KEY_DIMENSION_UNITS = @"dimension_units";
 NSString *const PACKAGE_KEY_HEIGHT = @"height";
 NSString *const PACKAGE_KEY_LENGTH = @"length";
 NSString *const PACKAGE_KEY_TYPE = @"type";
@@ -29,7 +29,7 @@ NSString *const PACKAGE_KEY_VALUE = @"value";
     [self putPropertyToJsonReadyDictionary:dict ofKey:PACKAGE_KEY_WEIGHT_UNITS andObject:self.weightUnits];
     [self putPropertyToJsonReadyDictionary:dict ofKey:PACKAGE_KEY_WIDTH andObject:self.width];
     [self putPropertyToJsonReadyDictionary:dict ofKey:PACKAGE_KEY_VALUE andObject:self.value];
-     return dict;
+    return dict;
 }
 
 -(id)initWithJSON:(NSDictionary*) jsonDict{

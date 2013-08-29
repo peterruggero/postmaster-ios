@@ -1,20 +1,20 @@
 //
-//  ShipmentFetchResult.m
+//  BoxFetchResult.m
 //  PostmasteriOS
 //
-//  Created by luczakp on 24.06.2013.
+//  Created by luczakp on 22.08.2013.
 //  Copyright (c) 2013 STXNext. All rights reserved.
 //
 
-#import "ShipmentFetchResult.h"
-#import "Shipment.h"
+#import "BoxFetchResult.h"
+#import "Box.h"
 
-@implementation ShipmentFetchResult
+@implementation BoxFetchResult
 
 -(id)initWithJSON:(NSDictionary*)json{
     self = [super init];
     if([json objectForKey:@"results"]){
-        _shipments = [Shipment getFromJSONArray:[json objectForKey:@"results"]];
+        _boxes = [Box getFromJSONArray:[json objectForKey:@"results"]];
         _cursor = [json objectForKey:@"cursor"];
         _previousCursor = [json objectForKey:@"previousCursor"];
     }
