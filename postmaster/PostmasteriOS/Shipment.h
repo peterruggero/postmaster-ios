@@ -26,6 +26,8 @@
 #import "RateResult.h"
 #import "ShipmentVoidResult.h"
 #import "ShipmentFetchByIdResult.h"
+#import "MonitorPackageQueryMessage.h"
+#import "MonitorPackageResult.h"
 
 @interface Shipment : PostmasterEntity
 
@@ -68,6 +70,7 @@ extern NSString *const SHIPMENT_KEY_REFERENCE;
 +(ShipmentFetchResult*)fetchShipmentById:(NSNumber*)shipmentId;
 +(ShipmentTrackResult*)track:(NSNumber*) shipmentId;
 -(ShipmentTrackResult*)track;
++(MonitorPackageResult*)monitorExternalPackage:(MonitorPackageQueryMessage*)query;
 +(ShipmentTrackByReferenceResult*)trackByReferenceNumber:(NSString*)referenceNumber;
 +(ShipmentVoidResult*)voidShipment:(NSInteger)shipmentId;
 -(ShipmentVoidResult*)voidShipment;

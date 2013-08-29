@@ -45,7 +45,7 @@
 }
 
 -(void)alertWithOperationResultError:(OperationResult*)result{
-    NSString* output = [NSString stringWithFormat:@"json error:\n%d %@",[result jsonErrorCode],[result jsonErrorMessage]];
+    NSString* output = [NSString stringWithFormat:@"json error:\n%d %@",[result jsonCode],[result jsonMessage]];
     if([result commonHTTPError]){
         output = [output stringByAppendingString:[[result commonHTTPError] localizedDescription]];
     }

@@ -15,6 +15,7 @@
 #import "RateQueryMessage.h"
 #import "Box.h"
 #import "PackageFitQueryMessage.h"
+#import "MonitorPackageQueryMessage.h"
 
 @implementation PostmasteriOSTests
 
@@ -127,7 +128,7 @@
     
     ShipmentTrackResult* result = [Shipment track:[NSNumber numberWithLongLong:6080711618461696]];
     
-    if(![result trackingDetails]){
+    if(![result trackingDetails] && [result jsonCode]!=400){
         STFail(@"Nothing was returned");
     }
     NSLog(@"%@",result);
@@ -139,7 +140,7 @@
     
     ShipmentTrackByReferenceResult* result = [Shipment trackByReferenceNumber:@"1Z8V81310297718490"];
 
-    if(([[result trackingHistoryList] count]) == 0 && ![result jsonErrorMessage]){
+    if(([[result trackingHistoryList] count]) == 0 && ![result jsonMessage]){
         STFail(@"Nothing was returned");
     }
     
@@ -147,8 +148,24 @@
     
 }
 
- 
--(void)test_05_voidShipment{
+-(void)test_05_monitorPackage{
+    MonitorPackageQueryMessage* query = [[MonitorPackageQueryMessage alloc] init];
+    query.callbackUrl = @"http://example.com/your-http-post-listener";
+    [query.events addObject:MONITOR_PACKAGE_EVENT_DELIVERED];
+    [query.events addObject:MONITOR_PACKAGE_EVENT_EXCEPTION];
+    query.tracking = @"1ZW470V80310800043";
+    
+    MonitorPackageResult* result = [Shipment monitorExternalPackage:query];
+    
+    if(![[result status] isEqualToString:@"OK"]){
+        STFail(@"No webhook registered");
+    }
+    
+    NSLog(@"%@",result);
+    
+}
+
+-(void)test_06_voidShipment{
     
     ShipmentVoidResult* result = [Shipment voidShipment:1004];
     if([result voidSuccess]){
@@ -158,7 +175,7 @@
         NSLog(@"VOID FAILED");
     }
     
-    if(![result voidSuccess] && ![result jsonErrorMessage]){
+    if(![result voidSuccess] && ![result jsonMessage]){
         STFail(@"Nothing was returned");
     }
     
@@ -167,7 +184,7 @@
 }
 
  
--(void)test_06_deliveryTimesTest{
+-(void)test_07_deliveryTimesTest{
        
     DeliveryTimeQueryMessage* service = [[DeliveryTimeQueryMessage alloc] init];
     service.carrier = @"ups";
@@ -184,7 +201,7 @@
 }
 
 
--(void)test_07_ratesTest{
+-(void)test_08_ratesTest{
     
     RateQueryMessage* message = [[RateQueryMessage alloc] init];
     message.carrier = @"fedex";
@@ -202,7 +219,7 @@
 }
  
 
--(void)test_08_boxCreateTest{
+-(void)test_09_boxCreateTest{
     Box* box = [[Box alloc] init];
     box.width = @10;
     box.height = @12;
@@ -216,7 +233,7 @@
     NSLog(@"%@",result);
 }
 
--(void)test_09_packageFetchTest{
+-(void)test_10_packageFetchTest{
     BoxFetchResult* result = [Box fetchBoxesWithCursor:nil andLimit:4];
     if(![result boxes]){
         STFail(@"No rate returned");
@@ -224,7 +241,7 @@
     NSLog(@"%@",result);
 }
 
--(void)test_10_packageFitTest{
+-(void)test_11_packageFitTest{
     PackageFitQueryMessage* query = [[PackageFitQueryMessage alloc] init];
     Box* box1 = [[Box alloc] init];
     box1.width = @6;

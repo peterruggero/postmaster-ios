@@ -17,7 +17,7 @@
         _trackingHistoryList = [TrackingDetailsHistory getFromJSONArray:[json objectForKey:@"history"]];
     }
     else{
-        [self wrapJSONErrorData:json];
+        [self wrapJSONData:json];
     }
     
     return self;

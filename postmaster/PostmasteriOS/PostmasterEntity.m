@@ -36,6 +36,10 @@
     return result;
 }
 
++(NSData*)executeRequest:(PostMasterRequest*)request andFillError:(NSError*) error withResponse:(NSHTTPURLResponse*) response{
+    return [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+}
+
 +(id)executeRequest:(PostMasterRequest*)request andFillResult:(OperationResult*)result{
     
     NSHTTPURLResponse *receivedResponse;

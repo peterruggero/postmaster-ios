@@ -25,6 +25,8 @@
 		DA07064F17788A4F00F341ED /* ShipmentTrackResult.m in Sources */ = {isa = PBXBuildFile; fileRef = DA07064E17788A4F00F341ED /* ShipmentTrackResult.m */; };
 		DA38EB4E178DB846005D4F0A /* Base64Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA38EB4D178DB846005D4F0A /* Base64Helper.m */; };
 		DA38EB4F178DB846005D4F0A /* Base64Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA38EB4D178DB846005D4F0A /* Base64Helper.m */; };
+		DA51F34517CF476800C26E93 /* MonitorPackageQueryMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = DA51F34417CF476800C26E93 /* MonitorPackageQueryMessage.m */; };
+		DA51F34817CF4CF100C26E93 /* MonitorPackageResult.m in Sources */ = {isa = PBXBuildFile; fileRef = DA51F34717CF4CF100C26E93 /* MonitorPackageResult.m */; };
 		DA7FFF2F176F1F1800BFDC9C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7FFF2E176F1F1800BFDC9C /* Foundation.framework */; };
 		DA7FFF34176F1F1800BFDC9C /* Postmaster.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DA7FFF33176F1F1800BFDC9C /* Postmaster.h */; };
 		DA7FFF36176F1F1800BFDC9C /* Postmaster.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7FFF35176F1F1800BFDC9C /* Postmaster.m */; };
@@ -128,6 +130,10 @@
 		DA07064E17788A4F00F341ED /* ShipmentTrackResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShipmentTrackResult.m; sourceTree = "<group>"; };
 		DA38EB4C178DB846005D4F0A /* Base64Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Helper.h; sourceTree = "<group>"; };
 		DA38EB4D178DB846005D4F0A /* Base64Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64Helper.m; sourceTree = "<group>"; };
+		DA51F34317CF476800C26E93 /* MonitorPackageQueryMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonitorPackageQueryMessage.h; sourceTree = "<group>"; };
+		DA51F34417CF476800C26E93 /* MonitorPackageQueryMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonitorPackageQueryMessage.m; sourceTree = "<group>"; };
+		DA51F34617CF4CF100C26E93 /* MonitorPackageResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonitorPackageResult.h; sourceTree = "<group>"; };
+		DA51F34717CF4CF100C26E93 /* MonitorPackageResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonitorPackageResult.m; sourceTree = "<group>"; };
 		DA7FFF2B176F1F1800BFDC9C /* libPostmasteriOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPostmasteriOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA7FFF2E176F1F1800BFDC9C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DA7FFF32176F1F1800BFDC9C /* PostmasteriOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PostmasteriOS-Prefix.pch"; sourceTree = "<group>"; };
@@ -244,6 +250,8 @@
 				DABC2F7717C61BA800B26397 /* BoxCreationResult.m */,
 				DA974B6B17C79D38002783C9 /* PackageFitResult.h */,
 				DA974B6C17C79D38002783C9 /* PackageFitResult.m */,
+				DA51F34617CF4CF100C26E93 /* MonitorPackageResult.h */,
+				DA51F34717CF4CF100C26E93 /* MonitorPackageResult.m */,
 			);
 			name = Results;
 			sourceTree = "<group>";
@@ -354,6 +362,8 @@
 				DABC2F7D17C6245000B26397 /* BoxData.m */,
 				DABC2F7F17C6253F00B26397 /* PackageFitInfo.h */,
 				DABC2F8017C6253F00B26397 /* PackageFitInfo.m */,
+				DA51F34317CF476800C26E93 /* MonitorPackageQueryMessage.h */,
+				DA51F34417CF476800C26E93 /* MonitorPackageQueryMessage.m */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -537,6 +547,8 @@
 				DABC2F7E17C6245000B26397 /* BoxData.m in Sources */,
 				DABC2F8117C6254000B26397 /* PackageFitInfo.m in Sources */,
 				DA974B6D17C79D38002783C9 /* PackageFitResult.m in Sources */,
+				DA51F34517CF476800C26E93 /* MonitorPackageQueryMessage.m in Sources */,
+				DA51F34817CF4CF100C26E93 /* MonitorPackageResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

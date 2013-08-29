@@ -18,7 +18,7 @@
 #define API_VERSION_1 @"v1"
 
 #import <Foundation/Foundation.h>
-@class Address,Shipment,Box,DeliveryTimeQueryMessage,RateQueryMessage,PackageFitQueryMessage;
+@class Address,Shipment,Box,DeliveryTimeQueryMessage,RateQueryMessage,PackageFitQueryMessage, MonitorPackageQueryMessage;
 
 @interface PostMasterRequest : NSMutableURLRequest{
     NSString* _apiKey;
@@ -35,6 +35,7 @@
 +(PostMasterRequest*)voidShipmentRequest:(NSInteger)shipmentId;
 +(PostMasterRequest*)deliveryTimeRequest:(DeliveryTimeQueryMessage*)message;
 +(PostMasterRequest*)rates:(RateQueryMessage*)message;
++(PostMasterRequest*)monitorExternalPackage:(MonitorPackageQueryMessage*)query;
 
 //boxes
 +(PostMasterRequest*)fetchBoxesRequestWithCursor:(NSString*)cursor andLimit:(NSInteger)limit;

@@ -17,6 +17,7 @@
 #import "DeliveryTimeQueryMessage.h"
 #import "PackageFitQueryMessage.h"
 #import "RateQueryMessage.h"
+#import "MonitorPackageQueryMessage.h"
 
 
 @implementation PostMasterRequest
@@ -41,6 +42,12 @@
 
 +(PostMasterRequest*)trackByReferenceNumber:(NSString*)referenceNumber{
     PostMasterRequest* request = [self requestWithHTTPMethod:CONN_TYPE_GET version:API_VERSION_1 path:[NSString stringWithFormat:@"/track?tracking=%@",referenceNumber] parameters:nil];
+    return request;
+}
+
++(PostMasterRequest*)monitorExternalPackage:(MonitorPackageQueryMessage*)query{
+    PostMasterRequest* request = [self requestWithHTTPMethod:CONN_TYPE_POST version:API_VERSION_1 path:@"/track" parameters:nil];
+    [request addContentLengthWithDictionary:[query toJSONReadyDictionary] ];
     return request;
 }
 

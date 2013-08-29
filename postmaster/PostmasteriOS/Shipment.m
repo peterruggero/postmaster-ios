@@ -110,6 +110,11 @@ NSString *const SHIPMENT_KEY_REFERENCE = @"reference";
     return [self executeRequest:request andFillResult:[ShipmentTrackByReferenceResult alloc]];
 }
 
++(MonitorPackageResult*)monitorExternalPackage:(MonitorPackageQueryMessage*)query{
+    PostMasterRequest *request = [PostMasterRequest monitorExternalPackage:query];
+    return [self executeRequest:request andFillResult:[MonitorPackageResult alloc]];
+}
+
 +(ShipmentVoidResult*)voidShipment:(NSInteger)shipmentId{
     PostMasterRequest *request = [PostMasterRequest voidShipmentRequest:shipmentId];
     return [self executeRequest:request andFillResult:[ShipmentVoidResult alloc]];

@@ -11,7 +11,7 @@
 @implementation ShipmentVoidResult
 
 -(BOOL)voidSuccess{
-    if(!_jsonErrorCode && !_jsonErrorMessage && !self.commonHTTPError){
+    if(!_jsonCode && !_jsonMessage && !self.commonHTTPError){
         return YES;
     }
     return NO;
@@ -20,7 +20,7 @@
 -(id)initWithJSON:(NSDictionary *)json{
     self = [super init];
     
-    [self wrapJSONErrorData:json];
+    [self wrapJSONData:json];
     
     return self;
 }

@@ -16,7 +16,7 @@
     if([json objectForKey:@"id"]){
         _shipment = [[Shipment alloc] initWithJSON:json];
     }else{
-        [self wrapJSONErrorData:json];
+        [self wrapJSONData:json];
     }
     return self;
 }

@@ -1,20 +1,19 @@
 //
-//  BoxCreationResult.m
+//  MonitorPackageResult.m
 //  PostmasteriOS
 //
-//  Created by luczakp on 22.08.2013.
+//  Created by luczakp on 29.08.2013.
 //  Copyright (c) 2013 STXNext. All rights reserved.
 //
 
-#import "BoxCreationResult.h"
-#import "Box.h"
+#import "MonitorPackageResult.h"
 
-@implementation BoxCreationResult
+@implementation MonitorPackageResult
 
 -(id)initWithJSON:(NSDictionary*)json{
     self = [super init];
-    if([json objectForKey:@"id"]){
-        _boxId = [json objectForKey:@"id"];
+    if([json objectForKey:@"status"]){
+        _status = [json objectForKey:@"status"];
     }else{
         [self wrapJSONData:json];
     }

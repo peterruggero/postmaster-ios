@@ -16,7 +16,7 @@
     if([json objectForKey:@"boxes"]){
         _fitInfo = [[PackageFitInfo alloc] initWithJSON:json];
     }else{
-        [self wrapJSONErrorData:json];
+        [self wrapJSONData:json];
     }
     return self;
 }

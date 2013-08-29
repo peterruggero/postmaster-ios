@@ -19,7 +19,7 @@
         _previousCursor = [json objectForKey:@"previousCursor"];
     }
     else{
-        [self wrapJSONErrorData:json];
+        [self wrapJSONData:json];
     }
     
     return self;
