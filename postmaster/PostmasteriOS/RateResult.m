@@ -12,8 +12,8 @@
 
 -(id)initWithJSON:(NSDictionary*)json{
     self=[super init];
-    [self wrapJSONErrorData:json];
-    if(!_jsonErrorCode){
+    [self wrapJSONData:json];
+    if(!_jsonCode){
         _rate = [[Rate alloc] initWithJSON:json];
     }
     return self;

@@ -17,7 +17,7 @@
         self.services = [Service getFromJSONArray:[json objectForKey:@"services"]];
     }
     else{
-        [self wrapJSONErrorData:json];
+        [self wrapJSONData:json];
     }
     return self;
 }

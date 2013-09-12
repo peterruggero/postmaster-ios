@@ -18,7 +18,7 @@
         _standarizedAddresses = [Address getFromJSONArray:[json objectForKey:@"addresses"]];
     }
     else{
-        [self wrapJSONErrorData:json];
+        [self wrapJSONData:json];
     }
     
     return self;

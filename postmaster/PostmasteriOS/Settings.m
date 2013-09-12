@@ -8,7 +8,6 @@
 
 #import "Settings.h"
 
-NSString *const API_DOMAIN = @"https://staging.api.postmaster.io";
-//NSString *const API_DOMAIN = @"http://httpbin.org";
+NSString *const API_DOMAIN = @"https://api.postmaster.io";
 NSInteger const LIB_VERSION = 1;
 NSInteger const CONNECTION_TIMEOUT = 30;

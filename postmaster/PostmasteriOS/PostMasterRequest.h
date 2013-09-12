@@ -18,22 +18,27 @@
 #define API_VERSION_1 @"v1"
 
 #import <Foundation/Foundation.h>
-#import "Address.h"
-#import "Shipment.h"
-#import "NSDictionary+Postmaster.h"
+@class Address,Shipment,Box,DeliveryTimeQueryMessage,RateQueryMessage,PackageFitQueryMessage, MonitorPackageQueryMessage;
 
 @interface PostMasterRequest : NSMutableURLRequest{
     NSString* _apiKey;
 }
-
+//address
 +(PostMasterRequest*)validateAddressRequest:(Address*)address;
+
+//shipment
 +(PostMasterRequest*)createShipmentRequest:(Shipment*)shipment;
 +(PostMasterRequest*)fetchShipmentRequestWithCursor:(NSString*)cursor andLimit:(NSInteger)limit;
-+(PostMasterRequest*)fetchShipmentById:(NSInteger)shipmentId;
-+(PostMasterRequest*)trackShipmentRequest:(NSInteger)shipmentId;
++(PostMasterRequest*)fetchShipmentById:(NSNumber*)shipmentId;
++(PostMasterRequest*)trackShipmentRequest:(NSNumber*)shipmentId;
 +(PostMasterRequest*)trackByReferenceNumber:(NSString*)referenceNumber;
-+(PostMasterRequest*)voidShipmentRequest:(NSInteger)shipmentId;
++(PostMasterRequest*)voidShipmentRequest:(NSNumber*)shipmentId;
 +(PostMasterRequest*)deliveryTimeRequest:(DeliveryTimeQueryMessage*)message;
 +(PostMasterRequest*)rates:(RateQueryMessage*)message;
++(PostMasterRequest*)monitorExternalPackage:(MonitorPackageQueryMessage*)query;
 
+//boxes
++(PostMasterRequest*)fetchBoxesRequestWithCursor:(NSString*)cursor andLimit:(NSInteger)limit;
++(PostMasterRequest*)createBoxRequest:(Box*)box;
++(PostMasterRequest*)packageFitRequest:(PackageFitQueryMessage*)message;
 @end

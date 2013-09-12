@@ -12,6 +12,13 @@
 #import "Shipment.h"
 #import "Base64Helper.h"
 #import "SBJson.h"
+#import "Address.h"
+#import "Box.h"
+#import "DeliveryTimeQueryMessage.h"
+#import "PackageFitQueryMessage.h"
+#import "RateQueryMessage.h"
+#import "MonitorPackageQueryMessage.h"
+
 
 @implementation PostMasterRequest
 
@@ -28,8 +35,8 @@
     return request;
 }
 
-+(PostMasterRequest*)trackShipmentRequest:(NSInteger)shipmentId{
-        PostMasterRequest* request = [self requestWithHTTPMethod:CONN_TYPE_GET version:API_VERSION_1 path:[NSString stringWithFormat:@"/shipments/%d/track",shipmentId] parameters:nil];
++(PostMasterRequest*)trackShipmentRequest:(NSNumber*)shipmentId{
+        PostMasterRequest* request = [self requestWithHTTPMethod:CONN_TYPE_GET version:API_VERSION_1 path:[NSString stringWithFormat:@"/shipments/%lld/track",[shipmentId longLongValue]] parameters:nil];
         return request;
 }
 
@@ -38,8 +45,14 @@
     return request;
 }
 
-+(PostMasterRequest*)voidShipmentRequest:(NSInteger)shipmentId{
-    PostMasterRequest* request = [self requestWithHTTPMethod:CONN_TYPE_DELETE version:API_VERSION_1 path:[NSString stringWithFormat:@"/shipments/%d/void",shipmentId] parameters:nil];
++(PostMasterRequest*)monitorExternalPackage:(MonitorPackageQueryMessage*)query{
+    PostMasterRequest* request = [self requestWithHTTPMethod:CONN_TYPE_POST version:API_VERSION_1 path:@"/track" parameters:nil];
+    [request addContentLengthWithDictionary:[query toJSONReadyDictionary] ];
+    return request;
+}
+
++(PostMasterRequest*)voidShipmentRequest:(NSNumber*)shipmentId{
+    PostMasterRequest* request = [self requestWithHTTPMethod:CONN_TYPE_DELETE version:API_VERSION_1 path:[NSString stringWithFormat:@"/shipments/%lld/void",[shipmentId longLongValue]] parameters:nil];
     return request;
 }
 
@@ -56,12 +69,45 @@
 }
 
 +(PostMasterRequest*)fetchShipmentRequestWithCursor:(NSString*)cursor andLimit:(NSInteger)limit{
-    PostMasterRequest* request = [self requestWithHTTPMethod:CONN_TYPE_GET version:API_VERSION_1 path:@"/shipments" parameters:nil];
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithCapacity:2];
+    if(cursor){
+        [params setObject:cursor forKey:@"cursor"];
+    }
+    if(limit!=0){
+        [params setObject:[NSString stringWithFormat:@"%d",limit] forKey:@"limit"];
+    }
+    
+    PostMasterRequest* request = [self requestWithHTTPMethod:CONN_TYPE_GET version:API_VERSION_1 path:@"/shipments" parameters:params];
     return request;
 }
 
-+(PostMasterRequest*)fetchShipmentById:(NSInteger)shipmentId{
-    PostMasterRequest* request = [self requestWithHTTPMethod:CONN_TYPE_GET version:API_VERSION_1 path:[NSString stringWithFormat:@"/shipments/%d",shipmentId] parameters:nil];
++(PostMasterRequest*)fetchShipmentById:(NSNumber*)shipmentId{
+    PostMasterRequest* request = [self requestWithHTTPMethod:CONN_TYPE_GET version:API_VERSION_1 path:[NSString stringWithFormat:@"/shipments/%lld",[shipmentId longLongValue]] parameters:nil];
+    return request;
+}
+
++(PostMasterRequest*)fetchBoxesRequestWithCursor:(NSString*)cursor andLimit:(NSInteger)limit{
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithCapacity:2];
+    if(cursor){
+        [params setObject:cursor forKey:@"cursor"];
+    }
+    if(limit!=0){
+        [params setObject:[NSString stringWithFormat:@"%d",limit] forKey:@"limit"];
+    }
+
+    PostMasterRequest* request = [self requestWithHTTPMethod:CONN_TYPE_GET version:API_VERSION_1 path:@"/packages" parameters:params];
+    return request;
+}
+
++(PostMasterRequest*)createBoxRequest:(Box*)box{
+    PostMasterRequest* request = [self requestWithHTTPMethod:CONN_TYPE_POST version:API_VERSION_1 path:@"/packages" parameters:nil];
+    [request addContentLengthWithDictionary:[box toJSONReadyDictionary] ];
+    return request;
+}
+
++(PostMasterRequest*)packageFitRequest:(PackageFitQueryMessage*)message{
+    PostMasterRequest* request = [self requestWithHTTPMethod:CONN_TYPE_POST version:API_VERSION_1 path:@"/packages/fit" parameters:nil];
+    [request addContentLengthWithDictionary:[message toJSONReadyDictionary] ];
     return request;
 }
 
@@ -92,7 +138,7 @@
     NSString *URLString = [NSString stringWithFormat:@"%@/%@%@",API_DOMAIN,version,path];
     
     if(!isPOST){
-        NSString *parameterString = [parameters URLQueryString];
+        NSString *parameterString = [self URLQueryStringForDictionary:parameters];
         if([parameterString length] > 0)
             queryString = [NSString stringWithFormat:@"?%@", parameterString];
     }
@@ -102,7 +148,7 @@
     [request setHTTPMethod:method];
     
     if(parameters && isPOST){
-        NSData *body = [parameters HTTPBodyWithEncoding:NSUTF8StringEncoding];
+        NSData *body = [self HTTPBodyWithEncoding:NSUTF8StringEncoding andContent:parameters];//[parameters HTTPBodyWithEncoding:NSUTF8StringEncoding];
         [request setHTTPBody:body];
     }
     
@@ -118,8 +164,41 @@
     NSString* toHash = [NSString stringWithFormat:@"%@:",[[Postmaster instance] getAPIKey]];
     NSData* data = [toHash dataUsingEncoding:NSUTF8StringEncoding];
     NSString* encoded = [Base64Helper base64EncodedStringFromData:data];
-    //return [data base64EncodedString];
     return encoded;
+}
+
++ (NSData *)HTTPBodyWithEncoding:(NSStringEncoding)encoding andContent:(NSDictionary*)content{
+    return [[self URLQueryStringForDictionary:content] dataUsingEncoding:encoding];
+}
+
++(NSString *)URLQueryStringForDictionary:(NSDictionary*)dict {
+    NSUInteger count = [dict count];
+    
+    if(count == 0)
+        return @"";
+    
+    NSMutableArray *pairs = [NSMutableArray arrayWithCapacity:count];
+    Class stringClass = [NSString class];
+    
+    for(NSString *name in dict){
+        id value = [dict objectForKey:name];
+        NSString *stringValue = nil;
+        
+        if(!value)
+            stringValue = @"";
+        else if([value isKindOfClass:stringClass])
+            stringValue = value;
+        else if ([value respondsToSelector:@selector(stringValue)])
+            stringValue = [value stringValue];
+        else
+            stringValue = [value description];
+        
+        NSString *result = (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (__bridge CFStringRef)stringValue, NULL, CFSTR(":/?#[]@!$&’()*+,;="), kCFStringEncodingUTF8);
+        
+        [pairs addObject:[NSString stringWithFormat:@"%@=%@", name, result]];
+    }
+    
+    return [pairs componentsJoinedByString:@"&"];
 }
 
 @end
