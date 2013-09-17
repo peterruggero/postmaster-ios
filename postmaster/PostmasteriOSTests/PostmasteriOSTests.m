@@ -70,32 +70,47 @@
 
 
 -(void)test_02_CreateShipment{
-    
+
     Shipment* sh =[[Shipment alloc] init];
     Address* toAddress = [[Address alloc]init];
     Package* pkg = [[Package alloc]init];
-
-    toAddress.company = @"ASLS";
+    Customs* customs = [[Customs alloc] init];
+    
+    toAddress.company = @"Groupe SEB";
     toAddress.contact = @"Joe Smith";
-    toAddress.line1 = @"1110 Someplace Ave.";
-    toAddress.city = @"Austin";
-    toAddress.phoneNumber = @"1231231239";
-    toAddress.state = @"TX";
-    toAddress.zipCode = @"78704";
-
+    toAddress.line1 = @"Les 4 M - Chemin du Petit Bois";
+    toAddress.line2 = @"BP 172";
+    toAddress.city = @"ECULLY CEDEX";
+    toAddress.phoneNumber = @"9197207941";
+    toAddress.zipCode = @"69134";
+    toAddress.country = @"FR";
+    
     sh.to = toAddress;
-    sh.carrier = @"ups";
-    sh.service = @"2DAY";
-
+    
     pkg.width = [NSNumber numberWithInt:10];
     pkg.height = [NSNumber numberWithInt:6];
     pkg.length = [NSNumber numberWithInt:8];
     pkg.weight = [NSNumber numberWithFloat:1.5f];
-    pkg.value = @"55";
-
+    pkg.value = @"0.34";
+    
+    CustomsContent* content = [[CustomsContent alloc] init];
+    content.description = @"A Bolt";
+    content.value = @"0.34";
+    content.weight = [NSNumber numberWithInteger:1];
+    content.quantity = [NSNumber numberWithInteger:1];
+    content.countryOfOrigin = @"FR";
+    
+    
+    customs.type = @"Other";
+    customs.comments = @"Some great stuff.";
+    customs.contents = [NSArray arrayWithObject:content];
+    
+    pkg.customs = customs;
+    
     sh.packageInfo = pkg;
-    sh.reference = @"Order # 54321";
-
+    
+    sh.carrier = @"fedex";
+    sh.service = @"INTL_PRIORITY";
    
     ShipmentCreationResult* result = [sh createShipment];
     
@@ -153,7 +168,7 @@
     query.callbackUrl = @"http://example.com/your-http-post-listener";
     [query.events addObject:MONITOR_PACKAGE_EVENT_DELIVERED];
     [query.events addObject:MONITOR_PACKAGE_EVENT_EXCEPTION];
-    query.tracking = @"1ZW470V80310800043";
+    query.tracking = @"1Z8V81310297718490";
     
     MonitorPackageResult* result = [Shipment monitorExternalPackage:query];
     

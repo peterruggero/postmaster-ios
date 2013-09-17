@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PostmasterEntity.h"
+#import "Customs.h"
 
 @interface Package : PostmasterEntity
 
@@ -27,6 +28,7 @@ extern NSString *const PACKAGE_KEY_WEIGHT_UNITS;
 extern NSString *const PACKAGE_KEY_WIDTH;
 @property(nonatomic,retain) NSString* value;
 extern NSString *const PACKAGE_KEY_VALUE;
-
+@property(nonatomic,retain) Customs* customs;
+extern NSString *const PACKAGE_KEY_CUSTOMS;
 
 @end

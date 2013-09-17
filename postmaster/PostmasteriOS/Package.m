@@ -18,6 +18,7 @@ NSString *const PACKAGE_KEY_WEIGHT = @"weight";
 NSString *const PACKAGE_KEY_WEIGHT_UNITS = @"weight_units";
 NSString *const PACKAGE_KEY_WIDTH = @"width";
 NSString *const PACKAGE_KEY_VALUE = @"value";
+NSString *const PACKAGE_KEY_CUSTOMS = @"customs";
 
 -(NSDictionary*)toJSONReadyDictionary{
     NSMutableDictionary* dict = [NSMutableDictionary dictionary];
@@ -29,6 +30,7 @@ NSString *const PACKAGE_KEY_VALUE = @"value";
     [self putPropertyToJsonReadyDictionary:dict ofKey:PACKAGE_KEY_WEIGHT_UNITS andObject:self.weightUnits];
     [self putPropertyToJsonReadyDictionary:dict ofKey:PACKAGE_KEY_WIDTH andObject:self.width];
     [self putPropertyToJsonReadyDictionary:dict ofKey:PACKAGE_KEY_VALUE andObject:self.value];
+    [self putPropertyToJsonReadyDictionary:dict ofKey:PACKAGE_KEY_CUSTOMS andObject:[self.customs toJSONReadyDictionary]];
     return dict;
 }
 
@@ -43,6 +45,7 @@ NSString *const PACKAGE_KEY_VALUE = @"value";
     self.weightUnits = [jsonDict objectForKey:PACKAGE_KEY_WEIGHT_UNITS];
     self.width = [jsonDict objectForKey:PACKAGE_KEY_WIDTH];
     self.value = [jsonDict objectForKey:PACKAGE_KEY_VALUE];
+    self.customs = [[Customs alloc] initWithJSON:[jsonDict objectForKey:PACKAGE_KEY_CUSTOMS]];
     return self;
     }
     return nil;

@@ -27,6 +27,8 @@
 		DA38EB4F178DB846005D4F0A /* Base64Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA38EB4D178DB846005D4F0A /* Base64Helper.m */; };
 		DA51F34517CF476800C26E93 /* MonitorPackageQueryMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = DA51F34417CF476800C26E93 /* MonitorPackageQueryMessage.m */; };
 		DA51F34817CF4CF100C26E93 /* MonitorPackageResult.m in Sources */ = {isa = PBXBuildFile; fileRef = DA51F34717CF4CF100C26E93 /* MonitorPackageResult.m */; };
+		DA60023A17E875AD00A80A00 /* Customs.m in Sources */ = {isa = PBXBuildFile; fileRef = DA60023917E875AD00A80A00 /* Customs.m */; };
+		DA60023D17E875BE00A80A00 /* CustomsContent.m in Sources */ = {isa = PBXBuildFile; fileRef = DA60023C17E875BE00A80A00 /* CustomsContent.m */; };
 		DA7FFF2F176F1F1800BFDC9C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7FFF2E176F1F1800BFDC9C /* Foundation.framework */; };
 		DA7FFF34176F1F1800BFDC9C /* Postmaster.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DA7FFF33176F1F1800BFDC9C /* Postmaster.h */; };
 		DA7FFF36176F1F1800BFDC9C /* Postmaster.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7FFF35176F1F1800BFDC9C /* Postmaster.m */; };
@@ -134,6 +136,10 @@
 		DA51F34417CF476800C26E93 /* MonitorPackageQueryMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonitorPackageQueryMessage.m; sourceTree = "<group>"; };
 		DA51F34617CF4CF100C26E93 /* MonitorPackageResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonitorPackageResult.h; sourceTree = "<group>"; };
 		DA51F34717CF4CF100C26E93 /* MonitorPackageResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonitorPackageResult.m; sourceTree = "<group>"; };
+		DA60023817E875AD00A80A00 /* Customs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Customs.h; sourceTree = "<group>"; };
+		DA60023917E875AD00A80A00 /* Customs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Customs.m; sourceTree = "<group>"; };
+		DA60023B17E875BE00A80A00 /* CustomsContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomsContent.h; sourceTree = "<group>"; };
+		DA60023C17E875BE00A80A00 /* CustomsContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomsContent.m; sourceTree = "<group>"; };
 		DA7FFF2B176F1F1800BFDC9C /* libPostmasteriOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPostmasteriOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA7FFF2E176F1F1800BFDC9C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DA7FFF32176F1F1800BFDC9C /* PostmasteriOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PostmasteriOS-Prefix.pch"; sourceTree = "<group>"; };
@@ -364,6 +370,10 @@
 				DABC2F8017C6253F00B26397 /* PackageFitInfo.m */,
 				DA51F34317CF476800C26E93 /* MonitorPackageQueryMessage.h */,
 				DA51F34417CF476800C26E93 /* MonitorPackageQueryMessage.m */,
+				DA60023817E875AD00A80A00 /* Customs.h */,
+				DA60023917E875AD00A80A00 /* Customs.m */,
+				DA60023B17E875BE00A80A00 /* CustomsContent.h */,
+				DA60023C17E875BE00A80A00 /* CustomsContent.m */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -549,6 +559,8 @@
 				DA974B6D17C79D38002783C9 /* PackageFitResult.m in Sources */,
 				DA51F34517CF476800C26E93 /* MonitorPackageQueryMessage.m in Sources */,
 				DA51F34817CF4CF100C26E93 /* MonitorPackageResult.m in Sources */,
+				DA60023A17E875AD00A80A00 /* Customs.m in Sources */,
+				DA60023D17E875BE00A80A00 /* CustomsContent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
