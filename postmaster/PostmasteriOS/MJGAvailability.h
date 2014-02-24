@@ -1,132 +1,171 @@
-//
-//  MJGImageLoader.h
-//  MJGFoundation
-//
-//  Created by Matt Galloway on 18/01/2012.
-//  Copyright 2012 Matt Galloway. All rights reserved.
-//
+#import <Availability.h>
+#import <Foundation/NSObjCRuntime.h>
 
 /**
- * Example usage:
- *   If you want to see if you're using methods that are only defined in iOS 4.0 and lower 
- *   then you would use the following. Replace the __IPHONE_4_0 with whatever other macro 
- *   you require. See Availability.h for iOS versions these relate to.
- * 
- * YourProjectPrefixHeader.pch:
- *   #define __IPHONE_OS_VERSION_SOFT_MAX_REQUIRED __IPHONE_4_0
- *   #import "MJGAvailability.h"
- *   
- *   // The rest of your prefix header as normal
- *   #import <UIKit/UIKit.h>
- * 
- * If you want to suppress a single warning (i.e. because you know that what you're doing is 
- * actually OK) then you can do something like this:
- *
- *   UINavigationBar *navBar = self.navigationController.navigationBar;
- *   if ([navBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]) {
- *   #pragma clang diagnostic push
- *   #pragma clang diagnostic ignored "-Wdeprecated-declarations"
- *       [navBar setBackgroundImage:[UIImage imageNamed:@"navbar_bg.png"] forBarMetrics:UIBarMetricsDefault];
- *   #pragma clang diagnostic pop
- *   }
- *
- * Or you can use the handy macros defined in this file also, like this:
- *
- *   UINavigationBar *navBar = self.navigationController.navigationBar;
- *   if ([navBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]) {
- *   MJG_START_IGNORE_TOO_NEW
- *       [navBar setBackgroundImage:[UIImage imageNamed:@"navbar_bg.png"] forBarMetrics:UIBarMetricsDefault];
- *   MJG_END_IGNORE_TOO_NEW
- *   }
- *
+ Availability replacement macros to check for new APIs usage that may cause a crash on older systems.
+ 
+ Simple define your deployment target version before importing this header file in your prefix file.
+ 
+ E.g.:
+ 
+ #define __IPHONE_OS_VERSION_SOFT_MAX_REQUIRED __IPHONE_5_0
+ 
+ @note Only enable it temporarily to make sure you are properly guarding new APIs calls.
+ 
+ Sources:
+ 
+ - http://stackoverflow.com/questions/12632834/get-xcode-4-5-to-warn-about-new-api-calls/12633309
+ - http://stackoverflow.com/questions/19111934/get-xcode-5-to-warn-about-new-api-calls
  */
-
-#import <Availability.h>
-
-#define MJG_START_IGNORE_TOO_NEW _Pragma("clang diagnostic push") _Pragma("clang diagnostic ignored \"-Wdeprecated-declarations\"")
-#define MJG_END_IGNORE_TOO_NEW _Pragma("clang diagnostic pop")
-
-#define __AVAILABILITY_TOO_NEW __attribute__((deprecated("TOO NEW!"))) __attribute__((weak_import))
-
 #ifndef __IPHONE_OS_VERSION_SOFT_MAX_REQUIRED
 #define __IPHONE_OS_VERSION_SOFT_MAX_REQUIRED __IPHONE_OS_VERSION_MIN_REQUIRED
 #endif
 
-#if __IPHONE_OS_VERSION_SOFT_MAX_REQUIRED < __IPHONE_OS_VERSION_MIN_REQUIRED
-    #error You cannot ask for a soft max version which is less than the deployment target
-#endif
+
+
+#define __NBU_AVAILABILITY_STARTING(version) __attribute__((deprecated("Only available in iOS " version "+"))) __attribute__((weak_import))
 
 #if __IPHONE_OS_VERSION_SOFT_MAX_REQUIRED < __IPHONE_2_0
-    #undef __AVAILABILITY_INTERNAL__IPHONE_2_0
-    #define __AVAILABILITY_INTERNAL__IPHONE_2_0 __AVAILABILITY_TOO_NEW
+#undef  __AVAILABILITY_INTERNAL__IPHONE_2_0
+#define __AVAILABILITY_INTERNAL__IPHONE_2_0 __NBU_AVAILABILITY_STARTING("2.0")
+#define __NBU_APICHECK_2_0(_ios)            __NBU_AVAILABILITY_STARTING("2.0")
+#else
+#define __NBU_APICHECK_2_0(_ios)            CF_AVAILABLE_IOS(_ios)
 #endif
 
 #if __IPHONE_OS_VERSION_SOFT_MAX_REQUIRED < __IPHONE_2_1
-    #undef __AVAILABILITY_INTERNAL__IPHONE_2_1
-    #define __AVAILABILITY_INTERNAL__IPHONE_2_1 __AVAILABILITY_TOO_NEW
+#undef  __AVAILABILITY_INTERNAL__IPHONE_2_1
+#define __AVAILABILITY_INTERNAL__IPHONE_2_1 __NBU_AVAILABILITY_STARTING("2.1")
+#define __NBU_APICHECK_2_1(_ios)            __NBU_AVAILABILITY_STARTING("2.1")
+#else
+#define __NBU_APICHECK_2_1(_ios)            CF_AVAILABLE_IOS(_ios)
 #endif
 
 #if __IPHONE_OS_VERSION_SOFT_MAX_REQUIRED < __IPHONE_2_2
-    #undef __AVAILABILITY_INTERNAL__IPHONE_2_2
-    #define __AVAILABILITY_INTERNAL__IPHONE_2_2 __AVAILABILITY_TOO_NEW
+#undef  __AVAILABILITY_INTERNAL__IPHONE_2_2
+#define __AVAILABILITY_INTERNAL__IPHONE_2_2 __NBU_AVAILABILITY_STARTING("2.2")
+#define __NBU_APICHECK_2_2(_ios)            __NBU_AVAILABILITY_STARTING("2.2")
+#else
+#define __NBU_APICHECK_2_2(_ios)            CF_AVAILABLE_IOS(_ios)
 #endif
 
 #if __IPHONE_OS_VERSION_SOFT_MAX_REQUIRED < __IPHONE_3_0
-    #undef __AVAILABILITY_INTERNAL__IPHONE_3_0
-    #define __AVAILABILITY_INTERNAL__IPHONE_3_0 __AVAILABILITY_TOO_NEW
+#undef  __AVAILABILITY_INTERNAL__IPHONE_3_0
+#define __AVAILABILITY_INTERNAL__IPHONE_3_0 __NBU_AVAILABILITY_STARTING("3.0")
+#define __NBU_APICHECK_3_0(_ios)            __NBU_AVAILABILITY_STARTING("3.0")
+#else
+#define __NBU_APICHECK_3_0(_ios)            CF_AVAILABLE_IOS(_ios)
 #endif
 
 #if __IPHONE_OS_VERSION_SOFT_MAX_REQUIRED < __IPHONE_3_1
-    #undef __AVAILABILITY_INTERNAL__IPHONE_3_1
-    #define __AVAILABILITY_INTERNAL__IPHONE_3_1 __AVAILABILITY_TOO_NEW
+#undef  __AVAILABILITY_INTERNAL__IPHONE_3_1
+#define __AVAILABILITY_INTERNAL__IPHONE_3_1 __NBU_AVAILABILITY_STARTING("3.1")
+#define __NBU_APICHECK_3_1(_ios)            __NBU_AVAILABILITY_STARTING("3.1")
+#else
+#define __NBU_APICHECK_3_1(_ios)            CF_AVAILABLE_IOS(_ios)
 #endif
 
 #if __IPHONE_OS_VERSION_SOFT_MAX_REQUIRED < __IPHONE_3_2
-    #undef __AVAILABILITY_INTERNAL__IPHONE_3_2
-    #define __AVAILABILITY_INTERNAL__IPHONE_3_2 __AVAILABILITY_TOO_NEW
+#undef  __AVAILABILITY_INTERNAL__IPHONE_3_2
+#define __AVAILABILITY_INTERNAL__IPHONE_3_2 __NBU_AVAILABILITY_STARTING("3.2")
+#define __NBU_APICHECK_3_2(_ios)            __NBU_AVAILABILITY_STARTING("3.2")
+#else
+#define __NBU_APICHECK_3_2(_ios)            CF_AVAILABLE_IOS(_ios)
 #endif
 
 #if __IPHONE_OS_VERSION_SOFT_MAX_REQUIRED < __IPHONE_4_0
-    #undef __AVAILABILITY_INTERNAL__IPHONE_4_0
-    #define __AVAILABILITY_INTERNAL__IPHONE_4_0 __AVAILABILITY_TOO_NEW
+#undef  __AVAILABILITY_INTERNAL__IPHONE_4_0
+#define __AVAILABILITY_INTERNAL__IPHONE_4_0 __NBU_AVAILABILITY_STARTING("4.0")
+#define __NBU_APICHECK_4_0(_ios)            __NBU_AVAILABILITY_STARTING("4.0")
+#else
+#define __NBU_APICHECK_4_0(_ios)            CF_AVAILABLE_IOS(_ios)
 #endif
 
 #if __IPHONE_OS_VERSION_SOFT_MAX_REQUIRED < __IPHONE_4_1
-    #undef __AVAILABILITY_INTERNAL__IPHONE_4_1
-    #define __AVAILABILITY_INTERNAL__IPHONE_4_1 __AVAILABILITY_TOO_NEW
+#undef  __AVAILABILITY_INTERNAL__IPHONE_4_1
+#define __AVAILABILITY_INTERNAL__IPHONE_4_1 __NBU_AVAILABILITY_STARTING("4.1")
+#define __NBU_APICHECK_4_1(_ios)            __NBU_AVAILABILITY_STARTING("4.1")
+#else
+#define __NBU_APICHECK_4_1(_ios)            CF_AVAILABLE_IOS(_ios)
 #endif
 
 #if __IPHONE_OS_VERSION_SOFT_MAX_REQUIRED < __IPHONE_4_2
-    #undef __AVAILABILITY_INTERNAL__IPHONE_4_2
-    #define __AVAILABILITY_INTERNAL__IPHONE_4_2 __AVAILABILITY_TOO_NEW
+#undef  __AVAILABILITY_INTERNAL__IPHONE_4_2
+#define __AVAILABILITY_INTERNAL__IPHONE_4_2 __NBU_AVAILABILITY_STARTING("4.2")
+#define __NBU_APICHECK_4_2(_ios)            __NBU_AVAILABILITY_STARTING("4.2")
+#else
+#define __NBU_APICHECK_4_2(_ios)            CF_AVAILABLE_IOS(_ios)
 #endif
 
 #if __IPHONE_OS_VERSION_SOFT_MAX_REQUIRED < __IPHONE_4_3
-    #undef __AVAILABILITY_INTERNAL__IPHONE_4_3
-    #define __AVAILABILITY_INTERNAL__IPHONE_4_3 __AVAILABILITY_TOO_NEW
+#undef  __AVAILABILITY_INTERNAL__IPHONE_4_3
+#define __AVAILABILITY_INTERNAL__IPHONE_4_3 __NBU_AVAILABILITY_STARTING("4.3")
+#define __NBU_APICHECK_4_3(_ios)            __NBU_AVAILABILITY_STARTING("4.3")
+#else
+#define __NBU_APICHECK_4_3(_ios)            CF_AVAILABLE_IOS(_ios)
+#endif
+
+#if __IPHONE_OS_VERSION_SOFT_MAX_REQUIRED < __IPHONE_4_0
+#undef  __AVAILABILITY_INTERNAL__IPHONE_4_0
+#define __AVAILABILITY_INTERNAL__IPHONE_4_0 __NBU_AVAILABILITY_STARTING("4.0")
+#define __NBU_APICHECK_4_0(_ios)            __NBU_AVAILABILITY_STARTING("4.0")
+#else
+#define __NBU_APICHECK_4_0(_ios)            CF_AVAILABLE_IOS(_ios)
+#endif
+
+#if __IPHONE_OS_VERSION_SOFT_MAX_REQUIRED < __IPHONE_4_1
+#undef  __AVAILABILITY_INTERNAL__IPHONE_4_1
+#define __AVAILABILITY_INTERNAL__IPHONE_4_1 __NBU_AVAILABILITY_STARTING("4.1")
+#define __NBU_APICHECK_4_1(_ios)            __NBU_AVAILABILITY_STARTING("4.1")
+#else
+#define __NBU_APICHECK_4_1(_ios)            CF_AVAILABLE_IOS(_ios)
 #endif
 
 #if __IPHONE_OS_VERSION_SOFT_MAX_REQUIRED < __IPHONE_5_0
-    #undef __AVAILABILITY_INTERNAL__IPHONE_5_0
-    #define __AVAILABILITY_INTERNAL__IPHONE_5_0 __AVAILABILITY_TOO_NEW
+#undef  __AVAILABILITY_INTERNAL__IPHONE_5_0
+#define __AVAILABILITY_INTERNAL__IPHONE_5_0 __NBU_AVAILABILITY_STARTING("5.0")
+#define __NBU_APICHECK_5_0(_ios)            __NBU_AVAILABILITY_STARTING("5.0")
+#else
+#define __NBU_APICHECK_5_0(_ios)            CF_AVAILABLE_IOS(_ios)
 #endif
 
 #if __IPHONE_OS_VERSION_SOFT_MAX_REQUIRED < __IPHONE_5_1
-    #undef __AVAILABILITY_INTERNAL__IPHONE_5_1
-    #define __AVAILABILITY_INTERNAL__IPHONE_5_1 __AVAILABILITY_TOO_NEW
+#undef  __AVAILABILITY_INTERNAL__IPHONE_5_1
+#define __AVAILABILITY_INTERNAL__IPHONE_5_1 __NBU_AVAILABILITY_STARTING("5.1")
+#define __NBU_APICHECK_5_1(_ios)            __NBU_AVAILABILITY_STARTING("5.1")
+#else
+#define __NBU_APICHECK_5_1(_ios)            CF_AVAILABLE_IOS(_ios)
 #endif
 
 #if __IPHONE_OS_VERSION_SOFT_MAX_REQUIRED < __IPHONE_6_0
-    #undef __AVAILABILITY_INTERNAL__IPHONE_6_0
-    #define __AVAILABILITY_INTERNAL__IPHONE_6_0 __AVAILABILITY_TOO_NEW
+#undef  __AVAILABILITY_INTERNAL__IPHONE_6_0
+#define __AVAILABILITY_INTERNAL__IPHONE_6_0 __NBU_AVAILABILITY_STARTING("6.0")
+#define __NBU_APICHECK_6_0(_ios)            __NBU_AVAILABILITY_STARTING("6.0")
+#else
+#define __NBU_APICHECK_6_0(_ios)            CF_AVAILABLE_IOS(_ios)
 #endif
 
 #if __IPHONE_OS_VERSION_SOFT_MAX_REQUIRED < __IPHONE_6_1
-    #undef __AVAILABILITY_INTERNAL__IPHONE_6_1
-    #define __AVAILABILITY_INTERNAL__IPHONE_6_1 __AVAILABILITY_TOO_NEW
+#undef  __AVAILABILITY_INTERNAL__IPHONE_6_1
+#define __AVAILABILITY_INTERNAL__IPHONE_6_1 __NBU_AVAILABILITY_STARTING("6.1")
+#define __NBU_APICHECK_6_1(_ios)            __NBU_AVAILABILITY_STARTING("6.1")
+#else
+#define __NBU_APICHECK_6_1(_ios)            CF_AVAILABLE_IOS(_ios)
 #endif
 
 #if __IPHONE_OS_VERSION_SOFT_MAX_REQUIRED < __IPHONE_7_0
-    #undef __AVAILABILITY_INTERNAL__IPHONE_7_0
-    #define __AVAILABILITY_INTERNAL__IPHONE_7_0 __AVAILABILITY_TOO_NEW
+#undef  __AVAILABILITY_INTERNAL__IPHONE_7_0
+#define __AVAILABILITY_INTERNAL__IPHONE_7_0 __NBU_AVAILABILITY_STARTING("7.0")
+#define __NBU_APICHECK_7_0(_ios)            __NBU_AVAILABILITY_STARTING("7.0")
+#else
+#define __NBU_APICHECK_7_0(_ios)            CF_AVAILABLE_IOS(_ios)
 #endif
+
+#undef  NS_AVAILABLE_IOS
+#define NS_AVAILABLE_IOS(_ios)                  __NBU_APICHECK_##_ios( _ios )
+
+#undef  __OSX_AVAILABLE_BUT_DEPRECATED
+#define __OSX_AVAILABLE_BUT_DEPRECATED(_osx, _osxDep, _ios, _iosDep)            __AVAILABILITY_INTERNAL##_ios
+
+#undef  __OSX_AVAILABLE_BUT_DEPRECATED_MSG
+#define __OSX_AVAILABLE_BUT_DEPRECATED_MSG(_osx, _osxDep, _ios, _iosDep, _msg)  __AVAILABILITY_INTERNAL##_ios
