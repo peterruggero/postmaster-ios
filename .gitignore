@@ -1,7 +1,6 @@
-
 xcuserdata
+build
+xccheckout
 
 
-postmaster/PostmasteriOS.xcodeproj/project.xcworkspace/xcuserdata/luczakp.xcuserdatad/UserInterfaceState.xcuserstate
-
-postmaster/PostmasteriOS.xcodeproj/project.xcworkspace/xcuserdata/luczakp.xcuserdatad/UserInterfaceState.xcuserstate
+*.xccheckout
